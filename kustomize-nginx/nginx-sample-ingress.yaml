@@ -6,6 +6,10 @@ metadata:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
 spec:
+  tls:
+  - hosts:
+    - nginxsample.abrmanlabs.com
+    secretName: nginx-sample-tls
   rules:
   - host: nginxsample.abrmanlabs.com
     http:
