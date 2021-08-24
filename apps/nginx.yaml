@@ -12,5 +12,5 @@ spec:
   project: default
   source:
     path: kustomize-nginx
-    repoURL: https://github.com/abrmans/argocd-bootstrap
+    repoURL: https://github.com/abrmans/argocd-bootstrap-git
     targetRevision: HEAD
