@@ -1,0 +1,9 @@
+apiVerson: v2
+name: monitoring-subchart
+type: application
+version: 1.0.0
+appversion: "1.0.0"
+dependancies:
+  - name: prometheus-community
+  - version: 0.9
+  - repository: https://prometheus-community.github.io/helm-charts
