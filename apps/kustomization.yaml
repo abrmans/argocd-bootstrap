@@ -6,4 +6,3 @@ resources:
   - kubernetes-ingress-nginx.yaml
   - nginx.yaml
   - longhorn.yaml
-  - monitoring.yaml
