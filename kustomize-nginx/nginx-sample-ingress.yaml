@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - nginxsample.abrmanlabs.com
+    - nginxsample-prod.abrmanlabs.com
     secretName: nginx-sample-tls-prod
   rules:
-  - host: nginxsample.abrmanlabs.com
+  - host: nginxsample-prod.abrmanlabs.com
     http:
       paths:
       - path: /
