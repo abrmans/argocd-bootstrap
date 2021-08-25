@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/longhorn/longhorn/v1.1.2/deploy/longhorn.yaml
+  - longhorn-ingress.yaml
