@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - nginxsample.abrmanlabs.com
-    secretName: nginx-sample-tls
+    secretName: nginx-sample-tls-prod
   rules:
   - host: nginxsample.abrmanlabs.com
     http:
