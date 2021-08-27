@@ -17,3 +17,15 @@ spec:
       containers:
       - image: ghcr.io/linuxserver/paperless-ng
         name: paperless-ng
+        app: longhorn-ui
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+          - name: PUID
+            value: "1000"
+          - name: PGID
+            value: "1000"
+          - name: TZ
+            value: "America/Chicago"
