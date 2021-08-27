@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: paperless-ng
+  name: paperless-ng
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ng
+  template:
+    metadata:
+      labels:
+        app: paperless-ng
+    spec:
+      containers:
+      - image: ghcr.io/linuxserver/paperless-ng
+        name: paperless-ng
