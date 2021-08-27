@@ -66,14 +66,11 @@ spec:
             port: http
       volumes:
       - name: originals
-        nfs:
-          path: /share
-          readOnly: true
-          server: my.nas.host
+        persistentVolumeClaim:
+          claimName: originals
       - name: photoprism
-        nfs:
-          path: /photoprism
-          server: my.nas.host
+        persistentVolumeClaim:
+          claimName: photoprism
 ---
 apiVersion: v1
 kind: Service
