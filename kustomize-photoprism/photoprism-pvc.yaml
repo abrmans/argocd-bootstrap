@@ -6,6 +6,7 @@ metadata:
   labels:
     app: photoprism
 spec:
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
@@ -19,6 +20,7 @@ metadata:
   labels:
     app: photoprism
 spec:
+  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
