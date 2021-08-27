@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-resources:
-- smokeping-deployment.yaml
-- smokeping-ingress.yaml
-- smokeping-pvc.yaml
-- smokeping-service.yaml
