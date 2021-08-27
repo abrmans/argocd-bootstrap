@@ -12,7 +12,7 @@ spec:
   tls:
     - hosts:
       - "smokeping.abrmanlabs.com"
-      secretName: "smokeping-tls-staging"
+      secretName: "smokeping-tls-staging-cert"
   rules:
     - host: "smokeping.abrmanlabs.com"
       http:
