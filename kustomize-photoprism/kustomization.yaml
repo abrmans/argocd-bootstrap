@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
 - photoprism-deployment.yaml
+- photoprism-pvc.yaml
