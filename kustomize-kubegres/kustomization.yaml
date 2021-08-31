@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/reactive-tech/kubegres/v1.9/kubegres.yaml
+  - kubegres-api.yaml
