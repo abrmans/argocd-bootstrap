@@ -13,15 +13,10 @@ spec:
    image: postgres:13.2
    port: 5432
 
-   imagePullSecrets:
-      - name: my-private-docker-repo-secret
-
    database:
       size: 200Mi
-      storageClassName: standard
+      storageClassName: longhorn
       volumeMount: /var/lib/postgresql/data
-
-   customConfig: mypostgres-conf
 
    failover:
       isDisabled: false
@@ -54,11 +49,11 @@ spec:
       - name: POSTGRES_PASSWORD
         valueFrom:
            secretKeyRef:
-              name: mySecretResource
+              name: mypostgres-secret
               key: superUserPassword
 
       - name: POSTGRES_REPLICATION_PASSWORD
         valueFrom:
            secretKeyRef:
-              name: mySecretResource
+              name: mypostgres-secret
               key: replicationUserPassword
