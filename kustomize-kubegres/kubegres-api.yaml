@@ -8,14 +8,13 @@ metadata:
     nginx.ingress.kubernetes.io/affinity: cookie
 
 spec:
-
    replicas: 3
    image: postgres:13.2
    port: 5432
 
    database:
       size: 200Mi
-      storageClassName: longhorn
+      storageClassName: "longhorn"
       volumeMount: /var/lib/postgresql/data
 
    failover:
