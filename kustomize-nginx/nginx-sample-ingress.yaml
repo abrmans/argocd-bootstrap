@@ -4,7 +4,7 @@ metadata:
   name: nginx-example-ingress
   annotations:
     # use the shared ingress-nginx
-   # kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "nginx"
    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
  # tls:
