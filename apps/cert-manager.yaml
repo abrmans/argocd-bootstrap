@@ -19,5 +19,3 @@ spec:
       parameters:
         - name: installCRDs
           value: 'true'
-    syncOptions:
-      - CreateNamespace=true
