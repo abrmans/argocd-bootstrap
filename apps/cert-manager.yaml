@@ -4,20 +4,9 @@ metadata:
   name: kustomize-cert-manager
 spec:
   destination:
-    name: ''
     namespace: cert-manager
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://charts.jetstack.io'
-    targetRevision: v1.5.3
-    chart: cert-manager
-    helm:
-      parameters:
-        - name: installCRDs
-          value: 'true'
-  project: default
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-
+    path: kustomize-cert-manager
+    repoURL: https://github.com/abrmans/argocd-bootstrap-git/
+    targetRevision: HEAD
