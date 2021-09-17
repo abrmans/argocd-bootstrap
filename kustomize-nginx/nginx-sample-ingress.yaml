@@ -9,7 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
 spec:
   rules:
-  - http:
+  - host: nginx-test.abrmanlabs.com
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -28,7 +29,8 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - http:
+  - host: nginx-test.abrmanlabs.com
+    http:
       paths:
       - path: /oauth2
         pathType: Prefix
@@ -40,4 +42,4 @@ spec:
   tls:
   - hosts:
     - nginx-test.abrmanlabs.com
-    secretName: nginx-tls-oauth2-secret
+    secretName: nginx-tls-oauth2-secret-test
