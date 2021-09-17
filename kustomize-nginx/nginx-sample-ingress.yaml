@@ -11,13 +11,10 @@ spec:
   - host: nginx-test.abrmanlabs.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+        path: /
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -29,14 +26,11 @@ spec:
   - host: nginx-test.abrmanlabs.com
     http:
       paths:
-      - path: /oauth2
-        pathType: Prefix
-        backend:
-          service:
-            name: oauth2-proxy
-            port:
-              number: 4180
+      - backend:
+          serviceName: oauth2-proxy
+          servicePort: 4180
+        path: /oauth2
   tls:
   - hosts:
     - nginx-test.abrmanlabs.com
-    secretName: nginx-test-tls-oauth2
+    secretName: nginx-tls-oauth2-secret
