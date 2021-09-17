@@ -54,4 +54,5 @@ spec:
     protocol: TCP
     targetPort: 4180
   selector:
-    app: oauth2-proxy
+    matchLabels:
+      app: oauth2-proxy
