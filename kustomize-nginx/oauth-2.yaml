@@ -27,7 +27,7 @@ spec:
         - name: OAUTH2_PROXY_CLIENT_ID
           value: 1e4acedf4c201ac0caf0
         - name: OAUTH2_PROXY_CLIENT_SECRET
-          value: 16b69f3d1507bd63a8f4ca391b5715f6401cbeae
+          value: 84369494050a217b35b36de1a72116add541df03
         # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
         - name: OAUTH2_PROXY_COOKIE_SECRET
           value: python -c 'import os,base64; print(base64.b64encode(os.urandom(16)).decode("ascii"))'
