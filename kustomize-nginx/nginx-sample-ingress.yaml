@@ -41,4 +41,4 @@ spec:
   tls:
   - hosts:
     - nginx-test.abrmanlabs.com
-    secretName: nginx-tls-oauth2-secret-test-new
+    secretName: nginx-tls-oauth2-secret-test-new-new
