@@ -4,8 +4,8 @@ metadata:
   name: external-auth-oauth2
   namespace: kube-system
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+    nginx.ingress.kubernetes.io/auth-url: "https://nginx-test.abrmanlabs.com/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://nginx-test.abrmanlabs.com/oauth2/start?rd=$escaped_request_uri"
 spec:
   ingressClassName: nginx
   rules:
@@ -25,8 +25,6 @@ kind: Ingress
 metadata:
   name: oauth2-proxy
   namespace: kube-system
-  annotations:
-    cert-manager.io/clusterissuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   rules:
@@ -43,4 +41,4 @@ spec:
   tls:
   - hosts:
     - nginx-test.abrmanlabs.com
-    secretName: oauth2-nginx-tls-newest
+    secretName: oauth2-nginx-tls-newest-test
