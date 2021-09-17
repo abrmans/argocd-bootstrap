@@ -42,5 +42,5 @@ spec:
               number: 4180
   tls:
   - hosts:
-    - nginx-test.abrmanlabs.com/oauth2
-    secretName: oauth2-nginx-tls-newest-test-test
+    - nginx-test.abrmanlabs.com
+    secretName: oauth2-nginx
