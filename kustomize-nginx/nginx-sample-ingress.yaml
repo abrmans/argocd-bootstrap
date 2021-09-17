@@ -39,4 +39,4 @@ spec:
   tls:
   - hosts:
     - nginx-test.abrmanlabs.com
-    secretName: nginx-test-tls-production
+    secretName: nginx-test-tls-oauth
