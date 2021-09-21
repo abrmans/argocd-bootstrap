@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - kuma-deployment.yaml
+  - kuma-ingress.yaml
+  - kuma-service.yaml
+  - kuma-pvc.yaml
