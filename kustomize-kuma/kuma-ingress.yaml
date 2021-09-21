@@ -24,10 +24,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - example.com
-    secretName: example-com-tls
+    - kuma.abrmanlabs.com
+    secretName: kuma-abrmanlabs-tls
   rules:
-  - host: example.com
+  - host: kuma.abrmanlabs.com
     http:
       paths:
       - path: /
