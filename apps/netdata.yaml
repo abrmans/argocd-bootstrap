@@ -8,6 +8,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: kustomize-netdata
+    path: kustomize-netdata/
     repoURL: https://github.com/abrmans/argocd-bootstrap-git/
     targetRevision: HEAD
