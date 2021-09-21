@@ -4,13 +4,14 @@ netdata:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     path: /
     hosts:
       - netdata.abrmanlabs.com
-  #  tls:
-  #    - secretName: netdata-tls
-  #      hosts:
-  #        - netdata.k8s.local
+    tls:
+      - secretName: netdata-tls
+        hosts:
+          - netdata.abrmanlabs.com
   parent:
 
     database:
