@@ -1258,13 +1258,13 @@ metadata:
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-secret-tls-frontend-v1
+    secretName: longhorn-secret-tls-frontend-v2
   rules:
   - host: longhorn.abrmanlabs.com
     http:
