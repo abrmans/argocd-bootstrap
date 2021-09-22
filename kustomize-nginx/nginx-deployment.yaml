@@ -48,7 +48,7 @@ data:
     # is the url for retrieve the OpenID configuration - normally the <server>/auth/realms/<realm_name>
     discovery-url: https://keycloak.abrmanlabs.com:8443/auth/realms/Applications
     # skip tls verify
-    skip-openid-provider-tls-verify: false
+    skip-openid-provider-tls-verify: true
     # the client id for the 'client' application
     client-id: gatekeeper
     # the secret associated to the 'client' application
