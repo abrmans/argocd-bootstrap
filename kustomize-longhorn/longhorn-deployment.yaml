@@ -1101,9 +1101,6 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 0
-        ports:
-        - containerPort: 8000
-          name: http
         env:
           - name: LONGHORN_MANAGER_IP
             value: "http://longhorn-backend:9500"
@@ -1258,13 +1255,13 @@ metadata:
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-secret-tls-frontend-v3
+    secretName: longhorn-secret-tls-frontend-v4
   rules:
   - host: longhorn.abrmanlabs.com
     http:
