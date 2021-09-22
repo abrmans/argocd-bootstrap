@@ -1153,7 +1153,7 @@ spec:
   ports:
   - name: http
     port: 80
-    targetPort: http
+    targetPort: service
     nodePort: null
 ---
 apiVersion: apps/v1
