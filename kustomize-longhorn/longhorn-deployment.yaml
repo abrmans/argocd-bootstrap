@@ -1281,7 +1281,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: gatekeeper-config
-  namespace: default
+  namespace: longhorn-system
   creationTimestamp: null
 data:
   keycloak-gatekeeper.conf: |+
