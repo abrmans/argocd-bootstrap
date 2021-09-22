@@ -10,7 +10,7 @@ netdata:
     hosts:
       - netdata.abrmanlabs.com
     tls:
-      - secretName: netdata-tls-secret
+      - secretName: netdata-tls-secret-new
         hosts:
           - netdata.abrmanlabs.com
           
