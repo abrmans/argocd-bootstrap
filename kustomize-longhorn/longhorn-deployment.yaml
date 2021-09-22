@@ -1152,7 +1152,7 @@ spec:
     app: longhorn-ui
   ports:
   - name: http
-    port: 8888
+    port: 80
     targetPort: service
     nodePort: null
 ---
@@ -1275,7 +1275,7 @@ spec:
           service:
             name: longhorn-frontend
             port:
-              number: 8888
+              number: 80
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -1303,7 +1303,7 @@ data:
     # the encryption key used to encode the session state
     encryption-key: vGcLt8ZUdPX5fXhtLZaPHZkGWHZrT6aa
     # the upstream endpoint which we should proxy request
-    upstream-url: http://127.0.0.1:8888/
+    upstream-url: http://127.0.0.1:80/
     forbidden-page: /html/access-forbidden.html
     resources:
     - uri: /*
