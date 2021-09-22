@@ -1264,7 +1264,7 @@ spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-secret-tls
+    secretName: longhorn-secret-tls-frontend
   rules:
   - host: longhorn.abrmanlabs.com
     http:
@@ -1273,7 +1273,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: longhorn-ui
+            name: longhorn-frontend
             port:
               number: 80
 ---
