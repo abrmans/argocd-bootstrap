@@ -61,7 +61,7 @@ spec:
   tls:
   - hosts:
     - keycloak.abrmanlabs.com
-    secretName: keycloak-abrmanlabs-tls
+    secretName: keycloak-abrmanlabs-tls-new
   rules:
   - host: keycloak.abrmanlabs.com
     http:
@@ -72,4 +72,4 @@ spec:
           service:
             name: keycloak
             port:
-              number: 3001
+              number: 8080
