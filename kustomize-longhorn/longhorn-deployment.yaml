@@ -1264,7 +1264,7 @@ spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-secret-tls-frontend
+    secretName: longhorn-secret-tls-frontend-v1
   rules:
   - host: longhorn.abrmanlabs.com
     http:
