@@ -46,23 +46,19 @@ metadata:
 data:
   keycloak-gatekeeper.conf: |+
     # is the url for retrieve the OpenID configuration - normally the <server>/auth/realms/<realm_name>
-    discovery-url: https://keycloak.192.168.164.1.nip.io:8443/auth/realms/local
+    discovery-url: https://keycloak.abrmanlabs.com:8443/auth/realms/Applications
     # skip tls verify
-    skip-openid-provider-tls-verify: true
+    skip-openid-provider-tls-verify: false
     # the client id for the 'client' application
     client-id: gatekeeper
     # the secret associated to the 'client' application
-    client-secret: 3d87097b-9f31-4457-89b3-a6578d21f759
+    client-secret: 4b600cd5-9576-4c1e-b9e8-00dc3e17fa25
     # the interface definition you wish the proxy to listen, all interfaces is specified as ':<port>', unix sockets as unix://<REL_PATH>|</ABS PATH>
     listen: :3000
     # whether to enable refresh tokens
     enable-refresh-tokens: true
-    # the location of a certificate you wish the proxy to use for TLS support
-    tls-cert:
-    # the location of a private key for TLS
-    tls-private-key:
     # the redirection url, essentially the site url, note: /oauth/callback is added at the end
-    redirection-url: http://nginx.192.168.164.130.nip.io
+    redirection-url: http://nginxpage.abrmanlabs.com
     secure-cookie: false
     # the encryption key used to encode the session state
     encryption-key: vGcLt8ZUdPX5fXhtLZaPHZkGWHZrT6aa
@@ -101,19 +97,27 @@ spec:
     app: nginx
   type: ClusterIP
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: nginx
-    namespace: default
-    annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
+  name: nginx-sample-ingress
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  tls:
+  - hosts:
+    - nginxpage.abrmanlabs.com
+    secretName: nginx-page-tls-new-secret
   rules:
-    - host: nginx.192.168.164.130.nip.io
-      http:
-        paths:
-        - path: /
-          backend:
-            serviceName: nginx
-            servicePort: 80
+  - host: nginxpage.abrmanlabs.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
