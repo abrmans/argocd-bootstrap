@@ -830,7 +830,6 @@ spec:
       description: Specify the labels
       jsonPath: .spec.labels
 ---
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -1254,8 +1253,8 @@ data:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-sample-ingress
-  namespace: default
+  name: longhorn-ingress
+  namespace: longhorn-system
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
