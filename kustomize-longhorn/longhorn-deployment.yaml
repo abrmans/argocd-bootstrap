@@ -1297,7 +1297,7 @@ data:
     # whether to enable refresh tokens
     enable-refresh-tokens: true
     # the redirection url, essentially the site url, note: /oauth/callback is added at the end
-    redirection-url: http://nginxpage.abrmanlabs.com
+    redirection-url: http://longhorn.abrmanlabs.com
     secure-cookie: false
     # the encryption key used to encode the session state
     encryption-key: vGcLt8ZUdPX5fXhtLZaPHZkGWHZrT6aa
