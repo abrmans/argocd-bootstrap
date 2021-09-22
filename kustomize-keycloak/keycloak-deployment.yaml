@@ -49,3 +49,27 @@ spec:
           httpGet:
             path: /auth/realms/master
             port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+  name: ingress
+spec:
+  tls:
+  - hosts:
+    - keycloak.abrmanlabs.com
+    secretName: keycloak-abrmanlabs-tls
+  rules:
+  - host: keycloak.abrmanlabs.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service
+            port:
+              number: 3001
