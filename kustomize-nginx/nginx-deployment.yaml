@@ -101,6 +101,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-sample-ingress
+  namespace: default
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
@@ -110,7 +111,7 @@ spec:
   tls:
   - hosts:
     - nginxpage.abrmanlabs.com
-    secretName: nginx-page-secret-new-v5
+    secretName: nginx-page-secret-new-v6
   rules:
   - host: nginxpage.abrmanlabs.com
     http:
