@@ -1263,7 +1263,7 @@ spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-secret-tls-frontend-v6
+    secretName: longhorn-secret-tls-frontend-v7
   rules:
   - host: longhorn.abrmanlabs.com
     http:
