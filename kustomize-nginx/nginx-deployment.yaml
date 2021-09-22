@@ -106,7 +106,6 @@ metadata:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
