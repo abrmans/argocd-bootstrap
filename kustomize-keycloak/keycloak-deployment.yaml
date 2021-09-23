@@ -35,9 +35,9 @@ spec:
         image: quay.io/keycloak/keycloak:15.0.2
         env:
         - name: KEYCLOAK_USER
-          value: "${{ secrets.keycloakuser }}"
+          value: ${{ secrets.KEYCLOAKUSER }}
         - name: KEYCLOAK_PASSWORD
-          value: "${{ secrets.keycloakpassword }}"
+          value: ${{ secrets.KEYCLOAKPASSWORD }}
         - name: PROXY_ADDRESS_FORWARDING
           value: "true"
         ports:
