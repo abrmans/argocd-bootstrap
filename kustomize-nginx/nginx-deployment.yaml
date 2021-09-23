@@ -52,7 +52,7 @@ data:
     # the client id for the 'client' application
     client-id: gatekeeper
     # the secret associated to the 'client' application
-    client-secret: 4b600cd5-9576-4c1e-b9e8-00dc3e17fa25
+    client-secret: ${{ secrets.clientsecret }}
     # the interface definition you wish the proxy to listen, all interfaces is specified as ':<port>', unix sockets as unix://<REL_PATH>|</ABS PATH>
     listen: :3000
     # whether to enable refresh tokens
