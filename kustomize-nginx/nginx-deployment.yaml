@@ -37,6 +37,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: default
   name: ingress-to-nginx
   cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
