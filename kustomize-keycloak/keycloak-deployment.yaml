@@ -55,13 +55,13 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   name: ingress
 spec:
   tls:
   - hosts:
     - keycloak.abrmanlabs.com
-    secretName: keycloak-abrmanlabs-tls-prod-v5
+    secretName: keycloak-abrmanlabs-tls-prod-v6
   rules:
   - host: keycloak.abrmanlabs.com
     http:
