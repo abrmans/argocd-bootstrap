@@ -43,7 +43,7 @@ spec:
   tls:
   - hosts:
     - hello.abrmanlabs.com
-    secretName: hello-tls-secret-v2
+    secretName: hello-tls-secret-v3
   rules:
   - host: hello.abrmanlabs.com
     http:
