@@ -33,21 +33,17 @@ spec:
   selector:
     app: nginx
   type: ClusterIP
----
+---            
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-sample-ingress
-  namespace: default
-  annotations:
-    # use the shared ingress-nginx
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+  name: ingress-to-nginx
+  cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   tls:
   - hosts:
     - hello.abrmanlabs.com
-    secretName: hello-tls-secret-v1
+    secretName: hello-tls-secret-v2
   rules:
   - host: hello.abrmanlabs.com
     http:
@@ -57,5 +53,6 @@ spec:
         backend:
           service:
             name: nginx
-            port:
+            port: 
               number: 80
+  ingressClassName: nginx
