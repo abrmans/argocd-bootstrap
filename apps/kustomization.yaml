@@ -7,4 +7,3 @@ resources:
   - longhorn.yaml
   - nginx.yaml
   - kuma.yaml
-  - keycloak.yaml
