@@ -47,7 +47,7 @@ spec:
   tls:
   - hosts:
     - nginxpage.abrmanlabs.com
-    secretName: nginx-page-secret-new-v12
+    secretName: nginx-page-secret-new-v13
   rules:
   - host: nginxpage.abrmanlabs.com
     http:
