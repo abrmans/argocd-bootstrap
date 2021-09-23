@@ -61,7 +61,7 @@ spec:
   tls:
   - hosts:
     - keycloak.abrmanlabs.com
-    secretName: keycloak-abrmanlabs-tls-prod-v3
+    secretName: keycloak-abrmanlabs-tls-prod-v4
   rules:
   - host: keycloak.abrmanlabs.com
     http:
