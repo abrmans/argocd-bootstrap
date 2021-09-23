@@ -1291,7 +1291,7 @@ data:
     # the client id for the 'client' application
     client-id: gatekeeper
     # the secret associated to the 'client' application
-    client-secret: 4b600cd5-9576-4c1e-b9e8-00dc3e17fa25
+    client-secret: ${{ secrets.clientsecret }}
     # the interface definition you wish the proxy to listen, all interfaces is specified as ':<port>', unix sockets as unix://<REL_PATH>|</ABS PATH>
     listen: :6000
     # whether to enable refresh tokens
@@ -1300,7 +1300,7 @@ data:
     redirection-url: http://longhorn.abrmanlabs.com
     secure-cookie: false
     # the encryption key used to encode the session state
-    encryption-key: vGcLt8ZUdPX5fXhtLZaPHZkGWHZrT6aa
+    encryption-key: ${{ secrets.encryptionkey }}
     # the upstream endpoint which we should proxy request
     upstream-url: http://127.0.0.1:80/
     forbidden-page: /html/access-forbidden.html
