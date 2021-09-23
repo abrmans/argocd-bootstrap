@@ -830,6 +830,7 @@ spec:
       description: Specify the labels
       jsonPath: .spec.labels
 ---
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -1101,11 +1102,12 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 0
+        ports:
+        - containerPort: 8000
+          name: http
         env:
           - name: LONGHORN_MANAGER_IP
             value: "http://longhorn-backend:9500"
-        ports:
-        - containerPort: 8000
 #      imagePullSecrets:
 #        - name: ""
 #      priorityClassName:
