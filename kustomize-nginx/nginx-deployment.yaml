@@ -47,7 +47,7 @@ spec:
   tls:
   - hosts:
     - hello.abrmanlabs.com
-    secretName: hello-tls-secret
+    secretName: hello-tls-secret-v1
   rules:
   - host: hello.abrmanlabs.com
     http:
