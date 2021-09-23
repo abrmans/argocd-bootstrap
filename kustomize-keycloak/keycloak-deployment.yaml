@@ -35,9 +35,9 @@ spec:
         image: quay.io/keycloak/keycloak:15.0.2
         env:
         - name: KEYCLOAK_USER
-          value: ${{ secrets.keycloakuser }}
+          value: "admin"
         - name: KEYCLOAK_PASSWORD
-          value: ${{ secrets.keycloakpassword }}
+          value: "admin"
         - name: PROXY_ADDRESS_FORWARDING
           value: "true"
         ports:
@@ -61,7 +61,7 @@ spec:
   tls:
   - hosts:
     - keycloak.abrmanlabs.com
-    secretName: keycloak-abrmanlabs-tls-prod-v2
+    secretName: keycloak-abrmanlabs-tls-prod-v3
   rules:
   - host: keycloak.abrmanlabs.com
     http:
