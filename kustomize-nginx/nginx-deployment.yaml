@@ -61,7 +61,7 @@ data:
     redirection-url: http://nginxpage.abrmanlabs.com
     secure-cookie: false
     # the encryption key used to encode the session state
-    encryption-key: vGcLt8ZUdPX5fXhtLZaPHZkGWHZrT6aa
+    encryption-key: ${{ secrets.encryptionkey }}
     # the upstream endpoint which we should proxy request
     upstream-url: http://127.0.0.1:80/
     forbidden-page: /html/access-forbidden.html
