@@ -17,7 +17,7 @@ paperless:
       value: "redis://localhost:6379"
   
   additionalContainers:
-    - broker:
+    broker:
       imagePullPolicy: IfNotPresent
       name: broker
       image: redis:6.0
@@ -40,4 +40,35 @@ paperless:
         - secretName: paperless-tls-dev
           hosts:
             - paperless.abrmanlabs.com
-
+      
+  persistence:
+    storageClass: "longhorn"
+    consume:
+      accessMode: ReadWriteOnce
+      emptyDir:
+        enabled: false
+      mountPath: /usr/src/paperless/consume
+    data:
+      accessMode: ReadWriteOnce
+      emptyDir:
+        enabled: false
+      enabled: true
+      mountPath: /usr/src/paperless/data
+    export:
+      accessMode: ReadWriteOnce
+      emptyDir:
+        enabled: false
+      enabled: true
+      mountpath: /usr/src/paperless/export
+    media:
+      accessMode: ReadWriteOnce
+      emptyDir:
+        enabled: false
+      enabled: true
+      mountpath: /usr/src/paperless/media
+  
+  service:
+    main:
+      ports:
+        http:
+          port: 8000
