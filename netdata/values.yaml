@@ -105,6 +105,10 @@ netdata:
       persistence: true
       storageclass: "longhorn"
       volumesize: 1Gi
+    persistence:
+      enabled: true
+      hostPath: /var/lib/netdata/registry
+      storageclass: "longhorn"
     configs:
       netdata:
         enabled: true
