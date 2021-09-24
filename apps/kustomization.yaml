@@ -8,3 +8,4 @@ resources:
   - nginx.yaml
   - kuma.yaml
   - paperless.yaml
+  - netdata.yaml
