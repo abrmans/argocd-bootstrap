@@ -7,5 +7,4 @@ resources:
   - longhorn.yaml
   - nginx.yaml
   - kuma.yaml
-  - home-assistant.yaml
   - paperless.yaml
