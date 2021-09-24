@@ -21,8 +21,6 @@ paperless:
       value: "miles"    
     - name: PAPERLESS_ADMIN_PASSWORD
       value: "2406ESpa!"
-    - name: PAPERLESS_SECRET_KEY
-      value: "b9Fk#BWqnJ_}sM*hh/"":jvNRm|s4W"
       
   additionalContainers:
     broker:
