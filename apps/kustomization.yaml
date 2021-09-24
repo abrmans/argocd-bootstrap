@@ -8,3 +8,4 @@ resources:
   - nginx.yaml
   - kuma.yaml
   - home-assistant.yaml
+  - paperless.yaml
