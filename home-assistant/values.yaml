@@ -33,7 +33,6 @@ home-assistant:
       annotations:
         kubernetes.io/ingress.class: nginx
         # kubernetes.io/tls-acme: "true"
-        nginx.org/websocket-services: home-assistant
         cert-manager.io/clusterissuer: "letsencrypt-prod"
       labels: {}
       hosts:
