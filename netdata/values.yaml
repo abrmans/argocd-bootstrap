@@ -98,11 +98,11 @@ netdata:
     podLabels: {}
     podAnnotations: {}
     database:
-      persistence: false
+      persistence: true
       storageclass: "longhorn"
       volumesize: 2Gi
     alarms:
-      persistence: false
+      persistence: true
       storageclass: "longhorn"
       volumesize: 1Gi
     configs:
@@ -222,7 +222,6 @@ netdata:
     persistence:
       enabled: true
       hostPath: /var/lib/netdata-k8s-child
-      storageclass: "longhorn"
 
     configs:
       netdata:
