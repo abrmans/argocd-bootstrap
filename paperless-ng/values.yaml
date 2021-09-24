@@ -42,7 +42,10 @@ paperless:
             - paperless.abrmanlabs.com
       
   persistence:
+    config:
+      enabled: true
     storageClass: "longhorn"
+    size: 32Gi
     consume:
       accessMode: ReadWriteOnce
       emptyDir:
