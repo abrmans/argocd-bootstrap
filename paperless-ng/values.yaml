@@ -22,7 +22,7 @@ paperless:
     - name: PAPERLESS_ADMIN_PASSWORD
       value: "2406ESpa!"
     - name: PAPERLESS_SECRET_KEY
-      value: "f0%FFd)2x"zRc[q"
+      value: "'/IQLCyRo!gGO2r"
       
   additionalContainers:
     broker:
