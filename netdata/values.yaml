@@ -5,7 +5,7 @@ netdata:
 
   image:
     repository: netdata/netdata
-    tag: "{{ .Chart.AppVersion }}"
+    tag: 3.6.14
     pullPolicy: Always
 
   sd:
