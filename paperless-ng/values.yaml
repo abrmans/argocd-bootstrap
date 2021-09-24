@@ -42,34 +42,38 @@ paperless:
             - paperless.abrmanlabs.com
       
   persistence:
-    config:
-      enabled: true
-    storageClass: "longhorn"
-    size: 32Gi
     consume:
       accessMode: ReadWriteOnce
       emptyDir:
         enabled: false
       mountPath: /usr/src/paperless/consume
+      storageClass: "longhorn"
+      size: 8Gi
     data:
       accessMode: ReadWriteOnce
       emptyDir:
         enabled: false
       enabled: true
       mountPath: /usr/src/paperless/data
+      storageClass: "longhorn"
+      size: 8Gi
     export:
       accessMode: ReadWriteOnce
       emptyDir:
         enabled: false
       enabled: true
       mountpath: /usr/src/paperless/export
+      storageClass: "longhorn"
+      size: 8Gi      
     media:
       accessMode: ReadWriteOnce
       emptyDir:
         enabled: false
       enabled: true
       mountpath: /usr/src/paperless/media
-  
+      storageClass: "longhorn"
+      size: 8Gi
+
   service:
     main:
       ports:
