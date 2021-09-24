@@ -31,3 +31,4 @@ netdata:
     persistence:
       enabled: true
       hostPath: /var/lib/netdata-k8s-child
+      storageclass: "longhorn"
