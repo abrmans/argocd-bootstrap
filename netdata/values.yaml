@@ -7,14 +7,15 @@ netdata:
       cert-manager.io/cluster-issuer: "letsencrypt-staging"
     labels: {}
     hosts:
-      - host: netdata.abrmanlabs.com
-        paths:
-          - path: /
-            pathType: Prefix
+       - host: netdata.abrmanlabs.com
+         paths:
+           - path: /
+             pathType: Prefix
     tls:
-      - secretName: netdata-tls-staging
-        hosts:
-        - netdata.abrmanlabs.com
+       - secretName: netdata-tls-staging
+         hosts:
+         - netdata.abrmanlabs.com
+        
     database:
       persistence: true
       ## Set '-' as the storageclass to get a volume from the default storage class.
