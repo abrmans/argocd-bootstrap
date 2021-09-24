@@ -79,7 +79,6 @@ netdata:
       # requests:
       #  cpu: 4
       #  memory: 4096Mi
-
     livenessProbe:
       failureThreshold: 3
       periodSeconds: 30
@@ -90,37 +89,22 @@ netdata:
       periodSeconds: 30
       successThreshold: 1
       timeoutSeconds: 1
- 
     terminationGracePeriodSeconds: 300
-
     nodeSelector: {}
-
     tolerations: []
-
     affinity: {}
-
     priorityClassName: ""
-
     env: {}
-      ## To disable anonymous statistics:
-      # DO_NOT_TRACK: 1
-
     podLabels: {}
- 
     podAnnotations: {}
-
     database:
       persistence: true
-      ## Set '-' as the storageclass to get a volume from the default storage class.
       storageclass: "longhorn"
       volumesize: 2Gi
-
     alarms:
       persistence: true
-      ## Set '-' as the storageclass to get a volume from the default storage class.
       storageclass: "longhorn"
       volumesize: 1Gi
-
     configs:
       netdata:
         enabled: true
