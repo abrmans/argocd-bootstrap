@@ -1,0 +1,27 @@
+netdata:
+ ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /
+    hosts:
+      - netdata.abrmanlabs.com
+  #  tls:
+  #    - secretName: netdata-tls
+  #      hosts:
+  #        - netdata.abrmanlabs.com
+    database:
+      persistence: true
+      ## Set '-' as the storageclass to get a volume from the default storage class.
+      storageclass: "longhorn"
+      volumesize: 2Gi
+
+    alarms:
+      persistence: true
+      ## Set '-' as the storageclass to get a volume from the default storage class.
+      storageclass: "longhorn"
+      volumesize: 1Gi
+
+    persistence:
+      enabled: true
+      hostPath: /var/lib/netdata-k8s-child
