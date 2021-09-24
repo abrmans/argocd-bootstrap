@@ -21,7 +21,9 @@ paperless:
       value: "miles"    
     - name: PAPERLESS_ADMIN_PASSWORD
       value: "2406ESpa!"
-      
+    - name: PAPERLESS_SECRET_KEY
+      value: ${{ secrets.PAPERLESS_SECRET_KEY }}
+
   additionalContainers:
     broker:
       imagePullPolicy: IfNotPresent
