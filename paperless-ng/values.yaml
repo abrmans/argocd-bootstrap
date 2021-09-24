@@ -15,7 +15,13 @@ paperless:
       value: "eng"
     - name: PAPERLESS_REDIS
       value: "redis://localhost:6379"
-  
+    - name: PAPERLESS_ALLOWED_HOSTS
+      value: "paperless.abrmanlabs.com"      
+    - name: PAPERLESS_ADMIN_USER
+      value: "miles"    
+    - name: PAPERLESS_ADMIN_PASSWORD
+      value: "2406ESpa!"
+      
   additionalContainers:
     broker:
       imagePullPolicy: IfNotPresent
