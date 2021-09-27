@@ -1,33 +1,46 @@
 esphome:
   service:
     main:
-      enabled: true
-      primary: true
-      type: ClusterIP
-      annotations:
-        name: esphome
       ports:
         http:
-          enabled: true
-          primary: true
           port: 6052
         
   ingress:
     main:
+    # -- Enables or disables the ingress
       enabled: true
+
+    # -- Make this the primary ingress (used in probes, notes, etc...).
+    # If there is more than 1 ingress, make sure that only 1 ingress is marked as primary.
       primary: true
+
+    # -- Override the name suffix that is used for this ingress.
+      nameOverride:
+
+    # -- Provide additional annotations which may be required.
       annotations:
+        kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "false"
-        cert-manager.io/issuer: "letsencrypt-staging"
+
+    # -- Provide additional labels which may be required.
+      labels: {}
+
+    # -- Set the ingressClass that is used for this ingress.
+    # Requires Kubernetes >=1.19
+      ingressClassName:  # "nginx"
+
+    ## Configure the hosts for the ingress
       hosts:
-        -  host: esphome.abrmanlabs.com
-           paths:
+      -  # -- Host address. Helm template can be passed.
+          host: esphome.kanebroslabs.com
+        ## Configure the paths for the host
+          paths:
+            -  # -- Path.  Helm template can be passed.
               path: /
+            # -- Ignored if not kubeVersion >= 1.14-0
               pathType: Prefix
               service:
-                name: esphome
+              # -- Overrides the service name reference for this path
+                name: 
+              # -- Overrides the service port reference for this path
                 port: 6052
-      tls:
-       - secretName: esphome-tls-staging
-         hosts:
-           - esphome.abrmanlabs.com
