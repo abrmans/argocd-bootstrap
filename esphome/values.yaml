@@ -1,10 +1,7 @@
 esphome:
   image:
-    # -- image repository
     repository: "esphome/esphome"
-    # -- image tag
     tag: "1.18.0"
-    # -- image pull policy
     pullPolicy: "IfNotPresent"
    
   service:
@@ -40,14 +37,3 @@ esphome:
        - secretName: esphome-tls-staging
          hosts:
            - esphome.abrmanlabs.com
-         
-  persistence:
-    config:
-      enabled: true
-      type: pvc
-      mountPath:  # /config
-      readOnly: false
-      nameOverride:
-      storageClass: "longhorn"
-      size: 1Gi
-      retain: false
