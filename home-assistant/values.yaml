@@ -21,7 +21,7 @@ home-assistant:
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "false"
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
       -  # -- Host address. Helm template can be passed.
           host: home-assistant.abrmanlabs.com
@@ -34,7 +34,7 @@ home-assistant:
                 port: 8123
 
       tls:
-        - secretName: hass-tls-staging-v4
+        - secretName: hass-tls-production
           hosts:
            - home-assistant.abrmanlabs.com
            
