@@ -48,7 +48,8 @@ home-assistant:
       selector: {}
       
   postgresql:
-    volumePermissions: true
+    volumePermissions:
+      enabled: true
     enabled: true
     postgresqlUsername: home-assistant
     postgresqlPassword: home-assistant-pass
