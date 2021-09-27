@@ -27,3 +27,14 @@ esphome:
         - secretName: esphome-tls-secret-production
           hosts:
             - esphome.abrmanlabs.com
+            
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      mountPath: /config
+      readOnly: false
+      storageClass:  "longhorn"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      retain: false
