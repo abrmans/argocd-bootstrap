@@ -45,6 +45,6 @@ esphome:
               # -- Overrides the service port reference for this path
                 port: 6052
       tls:
-         - secretName: esphome-tls-secret-staging
-         hosts:
-           - esphome.abrmanlabs.com
+        - secretName: esphome-tls-secret-staging
+          hosts:
+            - esphome.abrmanlabs.com
