@@ -71,11 +71,11 @@ spec:
     http:
       paths:
       - path: /oauth2
-      backend:
-        service:
-          name: oauth2-proxy
-          port:
-            number: 4180
+        backend:
+          service:
+            name: oauth2-proxy
+            port:
+              number: 4180
   tls:
   - hosts:
     - hello.abrmanlabs.com
