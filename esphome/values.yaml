@@ -21,7 +21,7 @@ esphome:
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "false"
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
     # -- Provide additional labels which may be required.
       labels: {}
@@ -45,6 +45,6 @@ esphome:
               # -- Overrides the service port reference for this path
                 port: 6052
       tls:
-        - secretName: esphome-tls-secret-staging
+        - secretName: esphome-tls-secret-production
           hosts:
             - esphome.abrmanlabs.com
