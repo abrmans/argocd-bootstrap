@@ -34,8 +34,8 @@ home-assistant:
                 port: 8123
 
       tls:
-         - secretName: hass-tls-staging
-         hosts:
+        - secretName: hass-tls-staging
+          hosts:
            - home-assistant.abrmanlabs.com
            
   persistence:
