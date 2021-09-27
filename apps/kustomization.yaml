@@ -8,3 +8,4 @@ resources:
   - kuma.yaml
   - paperless.yaml
   - esphome.yaml
+  - home-assistant.yaml
