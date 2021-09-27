@@ -1,9 +1,4 @@
 esphome:
-  image:
-    repository: "esphome/esphome"
-    tag: "1.18.0"
-    pullPolicy: "IfNotPresent"
-   
   service:
     main:
       enabled: true
