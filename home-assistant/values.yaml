@@ -49,20 +49,20 @@ home-assistant:
         matchLabels:
           app: home-assistant
   
-  postgresql:
+postgresql:
+  enabled: true
+  postgresqlUsername: home-assistant
+  postgresqlPassword: home-assistant-pass
+  postgresqlDatabase: home-assistant
+  persistence:
     enabled: true
-    postgresqlUsername: home-assistant
-    postgresqlPassword: home-assistant-pass
-    postgresqlDatabase: home-assistant
-    persistence:
-      enabled: true
-      storageClass: "longhorn"
-      mountPath: /bitnami/postgresql
-      accessModes:
-        - ReadWriteOnce
-      size: 8Gi
-      annotations:
-        selector:
-          matchLabels:
-            app: postgresql
+    storageClass: "longhorn"
+    mountPath: /bitnami/postgresql
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+    annotations:
+      selector:
+        matchLabels:
+          app: postgresql
 
