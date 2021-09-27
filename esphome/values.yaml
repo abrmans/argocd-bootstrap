@@ -1,0 +1,55 @@
+esphome:
+  image:
+    # -- image repository
+    repository: "esphome/esphome"
+    # -- image tag
+    tag: "1.18.0"
+    # -- image pull policy
+    pullPolicy: "IfNotPresent"
+   
+  service:
+    main:
+      enabled: true
+      primary: true
+      nameOverride:
+      type: ClusterIP
+      annotations: 
+      labels: {}
+      ports:
+        http:
+          enabled: true
+          primary: true
+          port: 6052
+        
+  ingress:
+    main:
+      enabled: true
+      primary: true
+      nameOverride:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "false"
+        cert-manager.io/issuer: "letsencrypt-staging"
+      hosts:
+        -  host: esphome.abrmanlabs.com
+           paths:
+              path: /
+              pathType: Prefix
+              service:
+                name: esphome
+                port: 6052
+      tls:
+       - secretName: esphome-tls-staging
+         hosts:
+           - esphome.abrmanlabs.com
+         
+  persistence:
+    config:
+      enabled: true
+      type: pvc
+      mountPath:  # /config
+      readOnly: false
+      nameOverride:
+      storageClass: "longhorn"
+      size: 1Gi
+      retain: false
