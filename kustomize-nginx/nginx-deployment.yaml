@@ -71,7 +71,7 @@ spec:
     http:
       paths:
       - path: /oauth2
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: oauth2-proxy
@@ -80,4 +80,4 @@ spec:
   tls:
   - hosts:
     - hello.abrmanlabs.com
-    secretName: nginx-hello-tls-staging-v8
+    secretName: nginx-hello-tls-staging-v10
