@@ -21,6 +21,7 @@ esphome:
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "false"
+        cert-manager.io/issuer: "letsencrypt-staging"
 
     # -- Provide additional labels which may be required.
       labels: {}
@@ -32,7 +33,7 @@ esphome:
     ## Configure the hosts for the ingress
       hosts:
       -  # -- Host address. Helm template can be passed.
-          host: esphome.kanebroslabs.com
+          host: esphome.abrmanlabs.com
         ## Configure the paths for the host
           paths:
             -  # -- Path.  Helm template can be passed.
