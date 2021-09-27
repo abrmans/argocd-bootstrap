@@ -45,10 +45,8 @@ home-assistant:
       accessModes:
       - ReadWriteOnce
       size: 1Gi
-      selector:
-        matchLabels:
-          app: home-assistant
-  
+      selector: {}
+      
   postgresql:
     enabled: true
     postgresqlUsername: home-assistant
