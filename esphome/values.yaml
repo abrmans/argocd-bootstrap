@@ -11,10 +11,8 @@ esphome:
     main:
       enabled: true
       primary: true
-      nameOverride:
       type: ClusterIP
-      annotations: 
-      labels: {}
+      annotations:
       ports:
         http:
           enabled: true
@@ -25,7 +23,6 @@ esphome:
     main:
       enabled: true
       primary: true
-      nameOverride:
       annotations:
         kubernetes.io/ingress.class: nginx
         kubernetes.io/tls-acme: "false"
