@@ -13,6 +13,7 @@ esphome:
       primary: true
       type: ClusterIP
       annotations:
+        name: esphome
       ports:
         http:
           enabled: true
