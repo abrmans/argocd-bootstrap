@@ -88,4 +88,4 @@ spec:
   tls:
   - hosts:
     - hello.abrmanlabs.com
-    secretName: nginx-hello-tls-staging-v5
+    secretName: nginx-hello-tls-staging-v6
