@@ -1,11 +1,8 @@
 paperless:
 
   image:
-    # -- image repository
     repository: jonaswinkler/paperless-ng
-    # -- image tag
     tag: 1.5.0
-    # -- image pull policy
     pullPolicy: IfNotPresent
 
   env:
@@ -28,7 +25,7 @@ paperless:
     broker:
       imagePullPolicy: IfNotPresent
       name: broker
-      image: redis:6.0
+      image: redis:6.2.5
   
   ingress:
     main:
