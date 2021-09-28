@@ -7,5 +7,3 @@ resources:
   - longhorn.yaml
   - kuma.yaml
   - paperless.yaml
-  - esphome.yaml
-  - home-assistant.yaml
