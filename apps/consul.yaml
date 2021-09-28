@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: consul
+spec:
+  destination:
+    namespace: consul
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: consul
+    repoURL: https://github.com/abrmans/argocd-bootstrap-git/
+    targetRevision: HEAD
