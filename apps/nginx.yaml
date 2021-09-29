@@ -4,7 +4,7 @@ metadata:
   name: kustomize-nginx
 spec:
   destination:
-    namespace: nginx
+    namespace: default
     server: 'https://kubernetes.default.svc'
   project: default
   source:
