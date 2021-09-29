@@ -4,7 +4,7 @@ metadata:
   name: kustomize-nginx
 spec:
   destination:
-    namespace: default
+    namespace: oauth2-proxy
     server: 'https://kubernetes.default.svc'
   project: default
   source:
