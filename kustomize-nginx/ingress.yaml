@@ -8,7 +8,7 @@ metadata:
   name: nginx
 spec:
   rules:
-  - host: nginx.int.abrmanlabs.com
+  - hosts: nginx.int.abrmanlabs.com
     http:
       paths:
       - path: /
