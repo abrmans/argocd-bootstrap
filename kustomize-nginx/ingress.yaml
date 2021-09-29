@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - helloworld.abrmanlabs.com
-    secretName: helloworld-tls-staging-v2
+    secretName: helloworld-tls-staging-v3
   rules:
   - host: helloworld.abrmanlabs.com
     http:
