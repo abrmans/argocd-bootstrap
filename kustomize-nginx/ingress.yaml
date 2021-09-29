@@ -8,7 +8,7 @@ metadata:
   name: external-auth-oauth2
 spec:
   rules:
-  - host: testhello.abrmanlabs.com
+  - host: nginx-auth.abrmanlabs.com
     http:
       paths:
       - path: /
@@ -29,10 +29,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - testhello.abrmanlabs.com
-    secretName: testhello-tls-production-oauth2-v4
+    - nginx-auth.abrmanlabs.com
+    secretName: nginx-auth-tls-staging
   rules:
-  - host: testhello.abrmanlabs.com
+  - host: nginx-auth.abrmanlabs.com
     http:
       paths:
       - path: /oauth2
