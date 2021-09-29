@@ -30,7 +30,7 @@ spec:
   tls:
   - hosts:
     - testhello.abrmanlabs.com
-    secretName: testhello-tls-production-oauth2
+    secretName: testhello-tls-production-oauth2-v2
   rules:
   - host: testhello.abrmanlabs.com
     http:
