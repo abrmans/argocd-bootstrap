@@ -9,3 +9,4 @@ resources:
   - paperless.yaml
   - nginx.yaml
   - oauth2-proxy.yaml
+  - keycloak.yaml
