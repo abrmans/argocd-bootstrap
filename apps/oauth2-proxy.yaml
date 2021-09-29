@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: oauth2-proxy
+  name: keycloak
 spec:
   destination:
     namespace: oauth2-proxy
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: oauth2-proxy
-    repoURL: https://github.com/abrmans/oauth2-proxy
+    path: keycloak
+    repoURL: https://github.com/abrmans/keycloak
     targetRevision: HEAD
