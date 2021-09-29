@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   name: ingress
 spec:
   tls:
   - hosts:
     - testhello.abrmanlabs.com
-    secretName: testhello-tls-staging
+    secretName: testhello-tls-production
   rules:
   - host: testhello.abrmanlabs.com
     http:
