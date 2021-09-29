@@ -2,13 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "https://nginx-auth.abrmanlabs.com/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://nginx-auth.abrmanlabs.com/oauth2/start?rd=$escaped_request_uri"
+    nginx.ingress.kubernetes.io/auth-url: "https://authentication.int.abrmanlabs.com/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://authentication.int.abrmanlabs.com/oauth2/start?rd=$escaped_request_uri"
     kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
   name: external-auth-oauth2
 spec:
   rules:
-  - host: nginx-auth.abrmanlabs.com
+  - host: nginx.int.abrmanlabs.com
     http:
       paths:
       - path: /
@@ -18,27 +19,7 @@ spec:
             name: nginx
             port:
               number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: oauth2-proxy
-spec:
   tls:
   - hosts:
-    - nginx-auth.abrmanlabs.com
-    secretName: nginx-auth-tls-production
-  rules:
-  - host: nginx-auth.abrmanlabs.com
-    http:
-      paths:
-      - path: /oauth2
-        pathType: Prefix
-        backend:
-          service:
-            name: oauth2-proxy
-            port:
-              number: 4180
+    - nginx.int.abrmanlabs.com
+    secretName: nginx-int-tls-staging
