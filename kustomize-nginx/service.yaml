@@ -3,8 +3,6 @@ kind: Service
 metadata:  
   name: nginx
 spec:
-  selector:    
-    component: nginx
   type: ClusterIP
   ports:  
   - name: http
