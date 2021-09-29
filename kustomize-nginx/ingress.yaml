@@ -5,6 +5,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/auth-signin: https://authentication.int.abrmanlabs.com/oauth2/start
     nginx.ingress.kubernetes.io/auth-url: http://authentication.int.abrmanlabs.com/oauth2/auth
+    cert-manager.io/cluster-issuer: letsencrypt-staging
   name: nginx
 spec:
   tls:
