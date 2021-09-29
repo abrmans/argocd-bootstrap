@@ -9,5 +9,5 @@ spec:
   project: default
   source:
     path: oauth2-proxy
-    repoURL: https://github.com/abrmans/oauth2-proxy/
+    repoURL: https://github.com/abrmans/oauth2-proxy
     targetRevision: HEAD
