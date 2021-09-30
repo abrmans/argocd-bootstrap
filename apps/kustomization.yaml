@@ -12,3 +12,4 @@ resources:
   - home-assistant.yaml
   - kubegres.yaml
   - vaultwarden.yaml
+  - ghost.yaml
