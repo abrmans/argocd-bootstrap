@@ -3,10 +3,10 @@ home-assistant:
     repository: homeassistant/home-assistant
     tag: 2021.6.3
     pullPolicy: IfNotPresent
-    
+
   env:
     TZ: America/Chicago
-    
+
   service:
     main:
       ports:
@@ -17,39 +17,30 @@ home-assistant:
     main:
       enabled: true
       primary: true
-      nameOverride:
       annotations:
         kubernetes.io/ingress.class: nginx
-        kubernetes.io/tls-acme: "false"
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        kubernetes.io/tls-acme: false
+        cert-manager.io/issuer: letsencrypt-staging
       hosts:
-      -  # -- Host address. Helm template can be passed.
-          host: home-assistant.abrmanlabs.com
-          paths:
-            -  # -- Path.  Helm template can be passed.
-              path: /
-              pathType: Prefix
-              service:
-                name: 
-                port: 8123
-
-      tls:
-        - secretName: hass-tls-production
-          hosts:
+      - host: home-assistant.abrmanlabs.com
+              
+    tls:
+       - secretName: chart-example-tls
+         hosts:
            - home-assistant.abrmanlabs.com
-           
+
+  hostNetwork: true
+
+  dnsPolicy: ClusterFirstWithHostNet
+
   persistence:
     config:
       enabled: true
-      storageClass: "longhorn"
-      accessModes:
-      - ReadWriteOnce
-      size: 1Gi
-      selector: {}
-      
+
+  # -- Enable and configure postgresql database subchart under this key.
+  #    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+  # @default -- See values.yaml
   postgresql:
-    volumePermissions:
-      enabled: true
     enabled: true
     postgresqlUsername: home-assistant
     postgresqlPassword: home-assistant-pass
@@ -57,8 +48,36 @@ home-assistant:
     persistence:
       enabled: true
       storageClass: "longhorn"
-      mountPath: /bitnami/postgresql
-      accessModes:
-        - ReadWriteOnce
-      size: 8Gi
-      selector: {}
+
+  metrics:
+    # -- Enable and configure a Prometheus serviceMonitor for the chart under this key.
+    # @default -- See values.yaml
+    enabled: false
+    serviceMonitor:
+      interval: 1m
+      scrapeTimeout: 30s
+      labels: {}
+      ## See https://www.home-assistant.io/docs/authentication/ for where to find
+      ## long lived access token creation under your account profile, which is
+      ## needed to monitor Home Assistant
+      # bearerTokenSecret:
+      #   name: ""
+      #   key: ""
+
+    # -- Enable and configure Prometheus Rules for the chart under this key.
+    # @default -- See values.yaml
+    prometheusRule:
+      enabled: false
+      labels: {}
+      # -- Configure additionial rules for the chart under this key.
+      # @default -- See prometheusrules.yaml
+      rules: []
+        # - alert: HomeAssistantAbsent
+        #   annotations:
+        #     description: Home Assistant has disappeared from Prometheus service discovery.
+        #     summary: Home Assistant is down.
+        #   expr: |
+        #     absent(up{job=~".*home-assistant.*"} == 1)
+        #   for: 5m
+        #   labels:
+        #     severity: critical
