@@ -11,3 +11,4 @@ resources:
   - oauth2-proxy.yaml
   - home-assistant.yaml
   - kubegres.yaml
+  - vaultwarden.yaml
