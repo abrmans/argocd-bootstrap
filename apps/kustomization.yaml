@@ -10,3 +10,4 @@ resources:
   - nginx.yaml
   - oauth2-proxy.yaml
   - home-assistant.yaml
+  - kubegres.yaml
