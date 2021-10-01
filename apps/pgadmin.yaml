@@ -8,5 +8,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    repoURL: https://github.com/abrmans/pgadmin/
+    path: pgadmin
+    repoURL: https://github.com/abrmans/pgadmin
     targetRevision: HEAD
