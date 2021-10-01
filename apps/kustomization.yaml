@@ -12,3 +12,4 @@ resources:
   - kubegres.yaml
   - vaultwarden.yaml
   - ghost.yaml
+  - pgadmin.yaml
