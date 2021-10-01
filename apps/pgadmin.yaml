@@ -8,6 +8,6 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: pgadmin
+    path: kustomize-pgadmin
     repoURL: https://github.com/abrmans/pgadmin
     targetRevision: HEAD
