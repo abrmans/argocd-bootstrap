@@ -5,7 +5,4 @@ resources:
   - cert-manager.yaml
   - kubernetes-ingress-nginx.yaml
   - longhorn.yaml
-  - nginx.yaml
-  - oauth2-proxy.yaml
   - kubegres.yaml
-  - ghost.yaml
