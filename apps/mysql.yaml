@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql
+spec:
+  destination:
+    namespace: mysql
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: mysql
+    repoURL: https://github.com/abrmans/mysql
+    targetRevision: HEAD
