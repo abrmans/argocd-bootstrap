@@ -38,7 +38,7 @@ linkerd2:
     resources:
       cpu:
         request: 100m
-     memory:
+      memory:
         limit: 250Mi
         request: 20Mi
 
