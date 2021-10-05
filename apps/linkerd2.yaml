@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: linkerd2
+  name: linkerd
 spec:
   destination:
-    namespace: linkerd2
+    namespace: linkerd
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: linkerd2
+    path: linkerd
     repoURL: https://github.com/abrmans/argocd-bootstrap-git/
     targetRevision: HEAD
