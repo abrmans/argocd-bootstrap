@@ -6,3 +6,4 @@ resources:
   - kubernetes-ingress-nginx.yaml
   - longhorn.yaml
   - mysql.yaml
+  - ghost.yaml
