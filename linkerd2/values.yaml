@@ -4,7 +4,7 @@
 
 linkerd2:
 
-  identityTrustAnchorsPEM: |
+  identityTrustAnchorsPEM:
     ca.crt
   identity:
     # -- If the linkerd-identity-trust-roots ConfigMap has already been created
@@ -16,7 +16,7 @@ linkerd2:
       clockSkewAllowance: 20s
 
       # -- Expiration timestamp for the issuer certificate. It must be provided during install. Must match the expiry date in crtPEM
-      crtExpiry: 2022-10-05T18L11:03Z
+      crtExpiry: $(date -d '+8760 hour' +"%Y-%m-%dT%H:%M:%SZ")
 
       # -- Amount of time for which the Identity issuer should certify identity
       issuanceLifetime: 24h0m0s
@@ -24,11 +24,11 @@ linkerd2:
       # -- Which scheme is used for the identity issuer secret format
       tls:
         # -- Issuer certificate (ECDSA). It must be provided during install.
-        crtPEM: |
+        crtPEM:
           issuer.crt
         # -- Key for the issuer certificate (ECDSA). It must be provided during
         # install
-        keyPEM: |
+        keyPEM:
           issuer.key
 
   enablePodAntiAffinity: true
