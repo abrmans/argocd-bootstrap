@@ -5,4 +5,4 @@ resources:
   - cert-manager.yaml
   - kubernetes-ingress-nginx.yaml
   - longhorn.yaml
-  - linkerd2.yaml
+  - mysql.yaml
