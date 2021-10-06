@@ -33,6 +33,16 @@ spec:
           value: "1000"
         - name: PGID
           value: "1000"
+        - name: SUDO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sudo-pass
+              key: sudo-password
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pass
+              key: password
       volumes:
       - name: codeserver
         persistentVolumeClaim:
