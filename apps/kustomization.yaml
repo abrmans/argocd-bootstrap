@@ -7,4 +7,4 @@ resources:
   - longhorn.yaml
   - mysql.yaml
   - codeserver.yaml
-  - linkerd.yaml
+  - linkerd2.yaml
