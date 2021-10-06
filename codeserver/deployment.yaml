@@ -29,11 +29,10 @@ spec:
         env:
         - name: TZ
           value: "America/Chicago"
-          name: PUID
+        - name: PUID
           value: "1000"
-          name: PGID
+        - name: PGID
           value: "1000"
-          
     volumes:
     - name: codeserver
       persistentVolumeClaim:
