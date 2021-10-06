@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+  labels:
+    app: code-server
+spec:
+  selector:
+    matchLabels:
+      app: code-server
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+      - name: code-server
+        image: linuxserver/code-server
+        ports:
+          - name: ui
+            containerPort: 8443
+            protocol: TCP
+        volumeMounts:
+          - name: codeserver
+            mountPath: /config
+        env:
+        - name: TZ
+          value: "America/Chicago"
+          name: PUID
+          value: "1000"
+          name: PGID
+          value: "1000"
+          
+    volumes:
+    - name: codeserver
+      persistentVolumeClaim:
+        claimName: codeserver
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: codeserver
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 2Gi
