@@ -33,10 +33,10 @@ spec:
           value: "1000"
         - name: PGID
           value: "1000"
-    volumes:
-    - name: codeserver
-      persistentVolumeClaim:
-        claimName: codeserver
+  volumes:
+  - name: codeserver
+    persistentVolumeClaim:
+      claimName: codeserver
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
