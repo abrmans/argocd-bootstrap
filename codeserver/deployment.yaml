@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: code-server
+  name: codeserver
   labels:
-    app: code-server
+    app: codeserver
 spec:
   selector:
     matchLabels:
-      app: code-server
+      app: codeserver
   replicas: 1
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: code-server
+        app: codeserver
     spec:
       containers:
-      - name: code-server
+      - name: codeserver
         image: linuxserver/code-server
         ports:
           - name: ui
