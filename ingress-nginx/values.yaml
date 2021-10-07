@@ -1,28 +1,58 @@
 ingress-nginx:
   controller:
     name: controller
-  configAnnotations:
-    linkerd.io/inject: enabled
-
-  kind: Deployment
-
-  annotations:
-    linkerd.io/inject: enabled
-
-  podAnnotations:
-    linkerd.io/inject: enabled
-
-  service:
-    enabled: true
+    image:
+      registry: k8s.gcr.io
+      image: ingress-nginx/controller
+      tag: "v1.0.3"
+      digest: sha256:4ade87838eb8256b094fbb5272d7dda9b6c7fa8b759e6af5383c1300996a7452
+      pullPolicy: IfNotPresent
+      runAsUser: 101
+      allowPrivilegeEscalation: true
+    existingPsp: ""
+    containerName: controller
+    containerPort:
+      http: 80
+      https: 443
+    dnsPolicy: ClusterFirst
+    reportNodeInternalIp: false
+    watchIngressWithoutClass: false
+    ingressClassByName: false
+    allowSnippetAnnotations: true
+    hostNetwork: false
+    hostPort:
+      enabled: false
+      ports:
+        http: 80
+        https: 443
+    electionID: ingress-controller-leader
+    ingressClassResource:
+      name: nginx
+      enabled: true
+      default: false
+      controllerValue: "k8s.io/ingress-nginx"
+    publishService:
+      enabled: true
+      ## Allows overriding of the publish service to bind to
+      ## Must be <namespace>/<service_name>
+      ##
+      pathOverride: ""
+    tcp:
+      configMapNamespace: ""   # defaults to $(POD_NAMESPACE)
+      annotations: {}
+    udp:
+      configMapNamespace: ""   # defaults to $(POD_NAMESPACE)
+      ## Annotations to be added to the udp config configmap
+      annotations: {}
+    kind: Deployment
     annotations:
       linkerd.io/inject: enabled
-
-  admissionWebhooks:
-    annotations:
-      linkerd.io/inject: enabled
-    enabled: true
-
-    service:
+    admissionWebHooks:
       annotations:
         linkerd.io/inject: enabled
-
+      service:
+        annotations:
+          linkerd.io/inject: enabled
+      patch:
+        podAnnotations:
+          linkerd.io/inject: enabled
