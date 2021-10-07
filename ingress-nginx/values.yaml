@@ -1,0 +1,35 @@
+ingress-nginx:
+  controller:
+    name: controller
+  configAnnotations:
+    linkerd.io/inject: enabled
+  tcp:
+    annotations:
+      linkerd.io/inject: enabled
+  udp:
+    annotations:
+      linkerd.io/inject: enabled
+
+  kind: Deployment
+
+  annotations:
+    linkerd.io/inject: enabled
+
+  podAnnotations:
+    linkerd.io/inject: enabled
+
+  service:
+    enabled: true
+
+    annotations:
+      linkerd.io/inject: enabled
+
+  admissionWebhooks:
+    annotations:
+      linkerd.io/inject: enabled
+    enabled: true
+
+    service:
+      annotations:
+        linkerd.io/inject: enabled
+
