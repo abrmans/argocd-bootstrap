@@ -12,6 +12,10 @@ ingress-nginx:
     existingPsp: ""
     podAnnotations:
       linkerd.io/inject: enabled
+    service:
+      internal:
+        annotations:
+          linkerd.io/inject: enabled
     containerName: controller
     containerPort:
       http: 80
