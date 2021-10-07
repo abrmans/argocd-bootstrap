@@ -6,3 +6,5 @@ resources:
   - ingress-nginx.yaml
   - longhorn.yaml
   - linkerd2.yaml
+  - linkerd-cni.yaml
+  - linkerd-viz.yaml
