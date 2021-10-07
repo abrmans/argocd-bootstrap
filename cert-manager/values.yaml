@@ -1,11 +1,11 @@
 cert-manager:
   installCRDs: true
-  serviceAccount:
-    annotations:
-      linkerd.io/inject: enabled
-  podAnnotations:
-    annotations:
-      linkerd.io/inject: enabled
-  deploymentAnnotations:
-    annotations:
-      linkerd.io/inject: enabled
+  #serviceAccount:
+  #  annotations:
+  #    linkerd.io/inject: enabled
+ # podAnnotations:
+ #   annotations:
+ #     linkerd.io/inject: enabled
+ # deploymentAnnotations:
+ #   annotations:
+ #     linkerd.io/inject: enabled
