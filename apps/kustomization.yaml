@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
   - cert-manager.yaml
-  - kubernetes-ingress-nginx.yaml
+  - ingress-nginx.yaml
   - longhorn.yaml
-  - codeserver.yaml
   - linkerd2.yaml
   - linkerd-ingress.yaml
