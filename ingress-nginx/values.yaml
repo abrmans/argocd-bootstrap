@@ -10,6 +10,8 @@ ingress-nginx:
       runAsUser: 101
       allowPrivilegeEscalation: true
     existingPsp: ""
+    podAnnotations:
+      linkerd.io/inject: enabled
     containerName: controller
     containerPort:
       http: 80
