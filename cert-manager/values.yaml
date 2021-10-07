@@ -7,3 +7,9 @@ cert-manager:
     linkerd.io/inject: enabled
   deploymentAnnotations:
     linkerd.io/inject: enabled
+  webhook:
+    deploymentAnnotations:
+      linkerd.io/inject: enabled
+  cainjector:
+    deploymentAnnotations:
+      linkerd.io/inject: enabled
