@@ -33,17 +33,15 @@ ingress-nginx:
       controllerValue: "k8s.io/ingress-nginx"
     publishService:
       enabled: true
-      ## Allows overriding of the publish service to bind to
-      ## Must be <namespace>/<service_name>
-      ##
       pathOverride: ""
     tcp:
       configMapNamespace: ""   # defaults to $(POD_NAMESPACE)
-      annotations: {}
+      annotations:
+        linkerd.io/inject: enabled
     udp:
-      configMapNamespace: ""   # defaults to $(POD_NAMESPACE)
-      ## Annotations to be added to the udp config configmap
-      annotations: {}
+      configMapNamespace: ""
+      annotations:
+        linkerd.io/inject: enabled
     kind: Deployment
     annotations:
       linkerd.io/inject: enabled
