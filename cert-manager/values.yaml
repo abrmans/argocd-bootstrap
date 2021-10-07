@@ -13,3 +13,8 @@ cert-manager:
   cainjector:
     deploymentAnnotations:
       linkerd.io/inject: enabled
+    podAnnotations:
+      linkerd.io/inject: enabled
+  startupapicheck:
+    podAnnotations:
+      linkerd.io/inject: enabled
