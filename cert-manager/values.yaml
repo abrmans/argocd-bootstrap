@@ -9,6 +9,6 @@ cert-manager:
   deploymentAnnotations:
     annotations:
       linkerd.io/inject: enabled
-  webhook:
-    podAnnotations:
-      linkerd.io/inject: enabled
+ # webhook:
+  #  podAnnotations:
+  #    linkerd.io/inject: enabled
