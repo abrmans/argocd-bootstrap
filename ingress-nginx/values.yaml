@@ -3,12 +3,6 @@ ingress-nginx:
     name: controller
   configAnnotations:
     linkerd.io/inject: enabled
-  tcp:
-    annotations:
-      linkerd.io/inject: enabled
-  udp:
-    annotations:
-      linkerd.io/inject: enabled
 
   kind: Deployment
 
