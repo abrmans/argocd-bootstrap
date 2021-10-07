@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-ingress-nginx
+  name: ingress-nginx
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,6 +11,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize-kubernetes-ingress-nginx
+    path: ingress-nginx
     repoURL: https://github.com/abrmans/argocd-bootstrap-git
     targetRevision: HEAD
