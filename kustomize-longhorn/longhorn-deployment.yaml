@@ -8,6 +8,8 @@ kind: ServiceAccount
 metadata:
   name: longhorn-service-account
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -1069,6 +1071,8 @@ metadata:
     app: longhorn-manager
   name: longhorn-backend
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP
@@ -1127,6 +1131,8 @@ metadata:
     app: longhorn-ui
   name: longhorn-frontend
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   selector:
