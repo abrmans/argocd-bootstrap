@@ -8,8 +8,6 @@ kind: ServiceAccount
 metadata:
   name: longhorn-service-account
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
