@@ -11,3 +11,7 @@ spec:
     path: cert-manager
     repoURL: https://github.com/abrmans/argocd-bootstrap-git/
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
