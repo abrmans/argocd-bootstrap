@@ -974,8 +974,6 @@ metadata:
     app: longhorn-manager
   name: longhorn-manager
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   selector:
     matchLabels:
