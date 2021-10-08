@@ -927,8 +927,6 @@ kind: RoleBinding
 metadata:
   name: longhorn-psp-binding
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -1077,8 +1075,6 @@ metadata:
     app: longhorn-manager
   name: longhorn-backend
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP
