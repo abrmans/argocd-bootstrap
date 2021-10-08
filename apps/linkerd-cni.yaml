@@ -11,3 +11,7 @@ spec:
     path: linkerd-cni
     repoURL: https://github.com/abrmans/linkerd
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
