@@ -9,3 +9,4 @@ resources:
   - linkerd-cni.yaml
   - linkerd-viz.yaml
   - linkerd-ingress.yaml
+  - cluster-issuers.yaml
