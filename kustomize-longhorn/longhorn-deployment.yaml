@@ -1156,8 +1156,6 @@ kind: Deployment
 metadata:
   name: longhorn-driver-deployer
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
