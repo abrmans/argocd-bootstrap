@@ -23,11 +23,4 @@ cert-manager:
     serviceAccount:
       annotations:
         linkerd.io/inject: enabled
-  startupapicheck:
-    jobAnnotations:
-      linkerd.io/inject: enabled
-    podAnnotations:
-      linkerd.io/inject: enabled
-    serviceAccount:
-      annotations:
-        linkerd.io/inject: enabled
+
