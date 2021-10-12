@@ -1092,6 +1092,8 @@ metadata:
     app: longhorn-ui
   name: longhorn-ui
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
