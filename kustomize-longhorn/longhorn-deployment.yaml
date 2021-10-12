@@ -1075,8 +1075,6 @@ metadata:
     app: longhorn-manager
   name: longhorn-backend
   namespace: longhorn-system
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP
