@@ -12,4 +12,4 @@ resources:
   - cluster-issuers.yaml
   - linkerd-jaeger.yaml
   - redis.yaml
-  - mysqsl.yaml
+  - mysql.yaml
