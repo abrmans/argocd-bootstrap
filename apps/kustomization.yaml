@@ -13,3 +13,4 @@ resources:
   - linkerd-jaeger.yaml
   - redis.yaml
   - mysql.yaml
+  - harbor.yaml
