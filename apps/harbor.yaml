@@ -9,5 +9,5 @@ spec:
   project: default
   source:
     path: harbor
-    repoURL: https://github.com/abrmans/argocd-bootstrap-git
+    repoURL: https://github.com/abrmans/harbor
     targetRevision: HEAD
