@@ -11,3 +11,4 @@ resources:
   - linkerd-ingress.yaml
   - cluster-issuers.yaml
   - linkerd-jaeger.yaml
+  - harbor.yaml
