@@ -16,3 +16,4 @@ resources:
   - harbor.yaml
   - postgresql-coredatabase.yaml
   - postgresql-notarydatabase.yaml
+  - postgresql-notarysignerdatabase.yaml
