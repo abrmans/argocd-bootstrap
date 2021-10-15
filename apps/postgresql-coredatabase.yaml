@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgresql-coreDatabase
+  name: postgresql-coredatabase
 spec:
   destination:
     namespace: harbor
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: postgresql-coreDatabase
+    path: postgresql-coredatabase
     repoURL: https://github.com/abrmans/postgresql
     targetRevision: HEAD
   syncPolicy:
