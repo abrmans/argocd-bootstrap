@@ -12,8 +12,3 @@ resources:
   - cluster-issuers.yaml
   - linkerd-jaeger.yaml
   - redis.yaml
- #- mysql.yaml
-  - harbor.yaml
-  - postgresql-coredatabase.yaml
-  - postgresql-notarydatabase.yaml
-  - postgresql-notarysignerdatabase.yaml
