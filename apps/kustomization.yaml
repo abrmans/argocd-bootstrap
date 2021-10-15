@@ -14,3 +14,4 @@ resources:
   - redis.yaml
  #- mysql.yaml
   - harbor.yaml
+  - postgresql-coreDatabase.yaml
