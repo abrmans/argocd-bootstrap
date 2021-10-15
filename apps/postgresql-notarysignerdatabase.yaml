@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql-notarysignerdatabase
+spec:
+  destination:
+    namespace: harbor
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: notarysignerdatabase
+    repoURL: https://github.com/abrmans/postgresql
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
