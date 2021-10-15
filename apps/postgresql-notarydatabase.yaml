@@ -8,7 +8,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: notarydatabase
+    path: notaryserverdatabase
     repoURL: https://github.com/abrmans/postgresql
     targetRevision: HEAD
   syncPolicy:
