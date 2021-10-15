@@ -12,5 +12,5 @@ resources:
   - cluster-issuers.yaml
   - linkerd-jaeger.yaml
   - redis.yaml
-  - mysql.yaml
+ #- mysql.yaml
   - harbor.yaml
