@@ -4,7 +4,7 @@ metadata:
   name: redis
 spec:
   destination:
-    namespace: redis
+    namespace: harbor
     server: 'https://kubernetes.default.svc'
   project: default
   source:
