@@ -8,7 +8,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: postgresql-coredatabase
+    path: coredatabase
     repoURL: https://github.com/abrmans/postgresql
     targetRevision: HEAD
   syncPolicy:
