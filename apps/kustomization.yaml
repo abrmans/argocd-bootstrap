@@ -12,4 +12,3 @@ resources:
   - cluster-issuers.yaml
   - linkerd-jaeger.yaml
   - redis.yaml
-  - harbor.yaml
