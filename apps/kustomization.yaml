@@ -6,3 +6,4 @@ resources:
   - ingress-nginx.yaml
   - longhorn.yaml
   - cluster-issuers.yaml
+  - linkerd2-cni.yaml
