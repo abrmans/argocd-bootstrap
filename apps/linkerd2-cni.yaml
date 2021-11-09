@@ -5,6 +5,7 @@ metadata:
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
+    namespace: linkerd-cni
   project: default
   source:
     path: linkerd2-cni
