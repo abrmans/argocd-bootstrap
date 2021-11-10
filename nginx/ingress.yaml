@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: nginx
   annotations:  
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
     - helloworld.abrmanlabs.com
-    secretName: nginx-hello-tls-staging-v1
+    secretName: nginx-hello-tls-prod-v1
   rules:
   - host: helloworld.abrmanlabs.com
     http:
