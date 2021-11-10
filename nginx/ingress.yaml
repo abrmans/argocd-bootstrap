@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - helloworld.abrmanlabs.com
-    secretName: nginx-hello-tls-staging
+    secretName: nginx-hello-tls-staging-v1
   rules:
   - host: helloworld.abrmanlabs.com
     http:
