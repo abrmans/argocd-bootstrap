@@ -7,12 +7,12 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: basic-auth
     nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - longhorn'
     annotations:  
-      cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-tls-staging-v1
+    secretName: longhorn-tls-prod-v1
   ingressClassName: nginx
   rules:
   - host: longhorn.abrmanlabs.com
