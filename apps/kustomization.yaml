@@ -8,3 +8,4 @@ resources:
   - cluster-issuers.yaml
   - linkerd2-cni.yaml
   - nginx.yaml
+  - monica.yaml
