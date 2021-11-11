@@ -126,9 +126,9 @@ openfaas:
     tls:
 
   ingressOperator:
-  image: ghcr.io/openfaas/ingress-operator:0.6.7
-    replicas: 1
-    create: false
-    resources:
-      requests:
-        memory: "25Mi"
+    image: ghcr.io/openfaas/ingress-operator:0.6.7
+      replicas: 1
+      create: false
+      resources:
+        requests:
+          memory: "25Mi"
