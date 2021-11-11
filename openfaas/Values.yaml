@@ -1,6 +1,5 @@
 openfaas:
   functionNamespace: openfaas-fn  # Default namespace for functions
-
   openfaasPRO: false
   exposeServices: true
   async: true
@@ -128,7 +127,7 @@ alertmanager:
 
     # Used to create Ingress record (should be used with exposeServices: false).
     hosts:
-      - host: gateway.openfaas.local  # Replace with gateway.example.com if public-facing
+      - host: gateway.abrmans.com  # Replace with gateway.example.com if public-facing
         serviceName: gateway
         servicePort: 8080
         path: /
