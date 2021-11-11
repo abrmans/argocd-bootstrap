@@ -9,4 +9,4 @@ resources:
   - linkerd2-cni.yaml
   - nginx.yaml
   - monica.yaml
-  - kube-prometheus-stack.yaml
+ # - kube-prometheus-stack.yaml
