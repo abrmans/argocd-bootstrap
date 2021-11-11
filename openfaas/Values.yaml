@@ -1,22 +1,17 @@
 openfaas:
   functionNamespace: openfaas-fn  # Default namespace for functions
   openfaasPRO: false
-  exposeServices: true
+  exposeServices: false
   async: true
-  serviceType: NodePort
+  serviceType: ClusterIP
   httpProbe: true               # Setting to true will use HTTP for readiness and liveness probe on the OpenFaaS system Pods (incompatible with Istio < 1.1.5)
   rbac: true
   clusterRole: false            # Set to true to have OpenFaaS administrate multiple namespaces
   createCRDs: true
   basic_auth: true
   generateBasicAuth: false
-
   securityContext: true
-  # create pod security policies for OpenFaaS control plane
-  # https://kubernetes.io/docs/concepts/policy/pod-security-policy/
   psp: false
-
-  # image pull policy for openfaas components, can change to `IfNotPresent` in offline env
   openfaasImagePullPolicy: "Always"
 
   gateway:
@@ -81,8 +76,6 @@ openfaas:
         memory: "120Mi"
         cpu: "50m"
 
-  # monitoring and auto-scaling components
-  # both components
   prometheus:
     image: prom/prometheus:v2.11.0
     create: true
@@ -91,14 +84,14 @@ openfaas:
         memory: "512Mi"
     annotations: {}
 
-alertmanager:
-  image: prom/alertmanager:v0.18.0
-  create: true
-  resources:
-    requests:
-      memory: "25Mi"
-    limits:
-      memory: "50Mi"
+  alertmanager:
+    image: prom/alertmanager:v0.18.0
+    create: true
+    resources:
+      requests:
+        memory: "25Mi"
+      limits:
+        memory: "50Mi"
 
   # async provider
   nats:
@@ -114,30 +107,24 @@ alertmanager:
       # Should stay off by default because the exporter is not multi-arch (yet)
       enabled: false
       image: natsio/prometheus-nats-exporter:0.8.0
-   resources:
+    resources:
       requests:
         memory: "120Mi"
 
   # ingress configuration
   ingress:
     enabled: false
-    ## For k8s >= 1.18 you need to specify the pathType
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    #pathType: ImplementationSpecific
-
+    pathType: ImplementationSpecific
     # Used to create Ingress record (should be used with exposeServices: false).
     hosts:
-      - host: gateway.abrmans.com  # Replace with gateway.example.com if public-facing
+      - host: gateway.abrmanlabs.com  # Replace with gateway.example.com if public-facing
         serviceName: gateway
         servicePort: 8080
         path: /
     annotations:
       kubernetes.io/ingress.class: nginx
     tls:
-    # Secrets must be manually created in the namespace.
 
-  # ingressOperator (optional) – component to have specific FQDN and TLS for Functions
-  # https://github.com/openfaas-incubator/ingress-operator
   ingressOperator:
   image: ghcr.io/openfaas/ingress-operator:0.6.7
     replicas: 1
