@@ -982,6 +982,8 @@ spec:
       app: longhorn-manager
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: longhorn-manager
     spec:
