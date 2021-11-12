@@ -1,0 +1,28 @@
+linkerd-viz:
+  enablePodAntiAffinity: true
+  resources: &ha_resources
+    cpu: &ha_resources_cpu
+      limit: ""
+      request: 100m
+    memory:
+      limit: 250Mi
+      request: 50Mi
+  tap:
+    replicas: 3
+    resources: *ha_resources
+  dashboard:
+    resources: *ha_resources
+  grafana:
+    resources:
+      cpu: *ha_resources_cpu
+      memory:
+        limit: 1024Mi
+        request: 50Mi
+  prometheus:
+    resources:
+      cpu:
+        limit: ""
+        request: 300m
+      memory:
+        limit: 8192Mi
+        request: 300Mi
