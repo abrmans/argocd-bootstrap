@@ -11,3 +11,8 @@ cert-manager:
       linkerd.io/inject: enabled
     serviceAnnotations:
       linkerd.io/inject: enabled
+  cainjector:
+    podAnnotations:
+      linkerd.io/inject: enabled
+    serviceAnnotations:
+      linkerd.io/inject: enabled
