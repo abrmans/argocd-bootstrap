@@ -1135,6 +1135,8 @@ metadata:
     app: longhorn-ui
   name: longhorn-frontend
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   selector:
