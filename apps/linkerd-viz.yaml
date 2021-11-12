@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linkerd-viz
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: linkerd-cni
+  project: default
+  source:
+    path: linkerd-viz
+    repoURL: https://github.com/abrmans/argocd-bootstrap-git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
