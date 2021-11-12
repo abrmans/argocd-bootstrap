@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: linkerd2
-    repoURL: https://github.com/abrmans/private-repo/
+    repoURL: https://github.com/abrmans/private-repo
     targetRevision: HEAD
   syncPolicy:
     automated:
