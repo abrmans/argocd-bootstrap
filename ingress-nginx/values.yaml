@@ -1,5 +1,5 @@
 ingress-nginx:
   controller:
     kind: Deployment
-  annotations:
-    linkerd.io/inject: enabled
+    podAnnotations:
+      linkerd.io/inject: enabled
