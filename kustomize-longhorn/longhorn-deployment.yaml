@@ -982,6 +982,8 @@ spec:
       app: longhorn-manager
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: longhorn-manager
     spec:
@@ -1075,6 +1077,8 @@ metadata:
     app: longhorn-manager
   name: longhorn-backend
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP
@@ -1099,6 +1103,8 @@ spec:
       app: longhorn-ui
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: longhorn-ui
     spec:
@@ -1133,6 +1139,8 @@ metadata:
     app: longhorn-ui
   name: longhorn-frontend
   namespace: longhorn-system
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   type: ClusterIP
   selector:
