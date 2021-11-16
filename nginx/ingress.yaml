@@ -4,6 +4,11 @@ metadata:
   name: nginx
   annotations:  
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/upstream-vhost: $service_name.$namespace.svc.cluster.local:80
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Origin "";
+      proxy_hide_header l5d-remote-ip;
+      proxy_hide_header l5d-server-id;   
 spec:
   ingressClassName: nginx
   tls:
