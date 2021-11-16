@@ -8,7 +8,7 @@ resources:
   - cluster-issuers.yaml
   - linkerd2-cni.yaml
   - nginx.yaml
-  - monica.yaml
+ # - monica.yaml
   - linkerd2.yaml
  # - linkerd-viz.yaml
  # - kube-prometheus-stack.yaml
