@@ -1,5 +1,2 @@
 cert-manager:
   installCRDs: true
-  deploymentAnnotations:
-    linkerd.io/inject: enabled
-
