@@ -1,2 +1,8 @@
 cert-manager:
   installCRDs: true
+  podAnnotations:
+    linkerd.io/inject: enabled
+  serviceAnnotations:
+    linkerd.io/inject: enabled
+  deploymentAnnotations:
+    linkerd.io/inject: enabled
