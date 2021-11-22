@@ -11,7 +11,7 @@ spec:
   tls:
   - hosts:
     - longhorn.abrmanlabs.com
-    secretName: longhorn-tls-prod-v1
+    secretName: longhorn-tls-prod-v2
   ingressClassName: nginx
   rules:
   - host: longhorn.abrmanlabs.com
