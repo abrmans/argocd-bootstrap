@@ -3,3 +3,5 @@ ingress-nginx:
     kind: Deployment
     podAnnotations:
       linkerd.io/inject: enabled
+    annotations:
+      linkerd.io/inject: enabled
