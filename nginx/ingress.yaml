@@ -14,7 +14,7 @@ spec:
   tls:
   - hosts:
     - helloworld.abrmanlabs.com
-    secretName: nginx-hello-tls-prod-v1
+    secretName: nginx-hello-tls-prod-v2
   rules:
   - host: helloworld.abrmanlabs.com
     http:
