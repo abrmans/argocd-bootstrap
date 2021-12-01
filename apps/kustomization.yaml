@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
- # - longhorn.yaml
+  - longhorn.yaml
   - cluster-issuers.yaml
  # - nginx.yaml
  # - monica.yaml
