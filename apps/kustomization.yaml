@@ -8,7 +8,7 @@ resources:
   - cluster-issuers.yaml
  # - nginx.yaml
  # - monica.yaml
- # - linkerd2.yaml
+  - linkerd2.yaml
  # - linkerd-viz.yaml
  # - linkerd-ingress.yaml
   - metallb.yaml
