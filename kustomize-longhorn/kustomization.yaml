@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
 - longhorn-deployment.yaml
-- longhorn-ingress.yaml
+#- longhorn-ingress.yaml
