@@ -1,0 +1,4 @@
+longhorn:
+  annotations:
+    linkerd.io/inject: enabled
+    config.linkerd.io/opaque-ports: "8500,9500"
