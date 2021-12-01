@@ -14,5 +14,3 @@ spec:
     path: ingress-nginx
     repoURL: https://github.com/abrmans/argocd-bootstrap-git
     targetRevision: HEAD
-    syncOptions:
-      - CreateNamespace=true
