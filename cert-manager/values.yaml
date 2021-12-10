@@ -4,3 +4,6 @@ cert-manager:
     linkerd.io/inject: enabled
   deploymentAnnotations:
     linkerd.io/inject: enabled
+  caInjector:
+    podAnnotations:
+      linkerd.io/inject: enabled
