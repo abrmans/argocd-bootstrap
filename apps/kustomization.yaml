@@ -4,11 +4,10 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
-  - longhorn.yaml
-  - cluster-issuers.yaml
-  - nginx.yaml
+ # - longhorn.yaml
+ # - cluster-issuers.yaml
+ # - nginx.yaml
  # - monica.yaml
-  - linkerd2.yaml
-  - linkerd-viz.yaml
+ # - linkerd2.yaml
+ # - linkerd-viz.yaml
  # - linkerd-ingress.yaml
-  - metallb.yaml
