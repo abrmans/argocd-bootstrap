@@ -7,7 +7,7 @@ resources:
   - longhorn.yaml
   - cluster-issuers.yaml
  # - nginx.yaml
-  - linkerd2.yaml
+ # - linkerd2.yaml
  # - linkerd-viz.yaml
- #- linkerd-jaeger.yaml
+ # - linkerd-jaeger.yaml
  # - linkerd-ingress.yaml
