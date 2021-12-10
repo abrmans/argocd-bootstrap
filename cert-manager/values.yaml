@@ -7,3 +7,6 @@ cert-manager:
   caInjector:
     podAnnotations:
       linkerd.io/inject: enabled
+  webhook:
+    podAnnotations:
+      linkerd.io/inject: enabled
