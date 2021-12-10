@@ -7,7 +7,7 @@ longhorn:
       type: ClusterIP
       nodePort: ""
   ingress:
-    enabled: false
+    enabled: true
     ingressClassName: nginx
     host: longhorn.abrmanlabs.com
     tls: true
