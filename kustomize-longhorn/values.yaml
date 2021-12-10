@@ -11,14 +11,9 @@ longhorn:
     ingressClassName: nginx
     host: longhorn.abrmanlabs.com
     tls: true
-    tlsSecret: longhorn-tls-staging
-    annotations:
-      nginx.ingress.kubernetes.io/upstream-vhost: $service_name.$namespace.svc.cluster.local:80
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-       proxy_set_header Origin "";
-       proxy_hide_header l5d-remote-ip;
-       proxy_hide_header l5d-server-id;      
+    tlsSecret: longhorn-tls-prod
+    annotations: 
       nginx.ingress.kubernetes.io/auth-type: basic
       nginx.ingress.kubernetes.io/auth-secret: basic-auth
       nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
-      cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
