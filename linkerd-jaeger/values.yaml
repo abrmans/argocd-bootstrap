@@ -1,0 +1,34 @@
+linkerd-jaeger:
+  installNamespace: true
+  namespace: linkerd-jaeger
+  linkerdNamespace: linkerd
+  enablePSP: false
+  collector:
+    enabled: true
+    image:
+      name: otel/opentelemetry-collector
+      version: 0.27.0
+      pullPolicy: Always
+  jaeger:
+    enabled: true
+    image:
+      name: jaegertracing/all-in-one
+      version: 1.19.2
+      pullPolicy: Always
+    args:
+      - --query.base-path=/jaeger
+  linkerdVersion: &linkerd_version stable-2.11.1
+  webhook:
+    externalSecret: false
+    crtPEM: |
+    keyPEM: |
+    caBundle: |
+    collectorSvcAddr: collector.linkerd-jaeger:55678
+    collectorSvcAccount: collector
+    failurePolicy: Ignore
+    image:
+      name: cr.l5d.io/linkerd/jaeger-webhook
+      version: *linkerd_version
+      pullPolicy: IfNotPresent
+    logLevel: info
+
