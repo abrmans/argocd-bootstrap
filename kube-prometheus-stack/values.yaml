@@ -32,99 +32,65 @@ defaultRules:
   ## Reduce app namespace alert scope
   appNamespacesTarget: ".*"
 
-  ## Labels for default rules
-  labels: {}
-  ## Annotations for default rules
-  annotations: {}
-
-  ## Additional labels for PrometheusRule alerts
-  additionalRuleLabels: {}
-
 global:
   rbac:
     create: true
     pspEnabled: true
-
 alertmanager:
   enabled: true
   apiVersion: v2
   serviceAccount:
     create: true
-
   ingress:
     enabled: false
     annotations: {}
     labels: {}
-    ## Hosts must be provided if Ingress is enabled.
-    ##
     hosts: []
       # - alertmanager.domain.com
-
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
-    ##
     paths: []
     # - /
-
-    ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
     # pathType: ImplementationSpecific
-
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
-    ##
     tls: []
     # - secretName: alertmanager-general-tls
     #   hosts:
     #   - alertmanager.example.com
-
   ## Configuration for Alertmanager secret
-  ##
   secret:
     annotations: {}
-
   ingressPerReplica:
     enabled: false
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    # ingressClassName: nginx
+      ingressClassName: nginx
     annotations: {}
     labels: {}
     ## Final form of the hostname for each per replica ingress is
     ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}
-    ##
     ## Prefix for the per replica ingress that will have `-$replicaNumber`
     ## appended to the end
     hostPrefix: ""
     ## Domain that will be used for the per replica ingress
     hostDomain: ""
-
     ## Paths to use for ingress rules
-    ##
     paths: []
     # - /
-
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    # pathType: ImplementationSpecific
-
+      pathType: ImplementationSpecific
     ## Secret name containing the TLS certificate for alertmanager per replica ingress
     ## Secret must be manually created in the namespace
     tlsSecretName: ""
-
     ## Separated secret for each per replica Ingress. Can be used together with cert-manager
-    ##
     tlsSecretPerReplica:
       enabled: false
       ## Final form of the secret for each per replica ingress is
       ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}
-      ##
       prefix: "alertmanager"
   service:
     clusterIP: ""
     port: 9093
     targetPort: 9093
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
     type: ClusterIP
   servicePerReplica:
     enabled: false
@@ -153,10 +119,8 @@ alertmanager:
               storage: 50Gi
     ## ListenLocal makes the Alertmanager server listen on loopback, so that it does not bind against the Pod IP.
     ## Note this is only for the Alertmanager UI, not the gossip communication.
-    ##
     listenLocal: false
     portName: "http-web"
-
   ## ExtraSecret can be used to store various data in an extra secret
   ## (use it for example to store hashed basic auth credentials)
   extraSecret:
@@ -171,12 +135,6 @@ alertmanager:
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 grafana:
   enabled: true
-
-  ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
-  forceDeployDatasources: false
-  ## ForceDeployDashboard Create dashboard configmap even if grafana deployment has been disabled
-  forceDeployDashboards: false
-  ## Deploy default dashboards
   defaultDashboardsEnabled: true
   defaultDashboardsTimezone: America/Chicago
   adminPassword: prom-operator
@@ -202,13 +160,10 @@ grafana:
     # - secretName: grafana-general-tls
     #   hosts:
     #   - grafana.example.com
-
   sidecar:
     dashboards:
       enabled: true
       label: grafana_dashboard
-      ## Annotations for Grafana dashboard configmaps
-      annotations: {}
       multicluster:
         global:
           enabled: false
@@ -237,11 +192,9 @@ grafana:
   #   mountPath: /etc/grafana/ssl/
   #   configMap: certs-configmap
   #   readOnly: true
-
   deleteDatasources: []
   # - name: example-datasource
   #   orgId: 1
-
   ## Configure additional grafana datasources (passed through tpl)
   ## ref: http://docs.grafana.org/administration/provisioning/#datasources
   additionalDataSources: []
@@ -257,30 +210,23 @@ grafana:
   #   type: prometheus
   #   url: https://{{ printf "%s-prometheus.svc" .Release.Name }}:9090
   #   version: 1
-
   ## Passed to grafana subchart and used by servicemonitor below
-  ##
   service:
     portName: http-web
-
   ## If true, create a serviceMonitor for grafana
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     interval: ""
     selfMonitor: true
-
     # Path to use for scraping metrics. Might be different if server.root_url is set
     # in grafana.ini
     path: "/metrics"
-
-
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     metricRelabelings: []
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
-
     ## RelabelConfigs to apply to samples before scraping
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     relabelings: []
@@ -290,7 +236,6 @@ grafana:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
 ## Component scraping the kube api server
 kubeApiServer:
   enabled: true
@@ -307,14 +252,12 @@ kubeApiServer:
       matchLabels:
         component: apiserver
         provider: kubernetes
-
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     metricRelabelings: []
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
-
     ## RelabelConfigs to apply to samples before scraping
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     relabelings: []
@@ -326,14 +269,11 @@ kubeApiServer:
     #   regex: default;kubernetes;https
     # - targetLabel: __address__
     #   replacement: kubernetes.default.svc:443
-
 ## Component scraping the kubelet and kubelet-hosted cAdvisor
 kubelet:
   enabled: true
   namespace: kube-system
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     ## proxyUrl: URL of a proxy that should be used for scraping.
     proxyUrl: ""
     ## Enable scraping the kubelet over https. For requirements to enable this see
@@ -408,7 +348,6 @@ kubelet:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     metricRelabelings: []
@@ -434,7 +373,6 @@ kubelet:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
 ## Component scraping the kube controller manager
 kubeControllerManager:
   enabled: true
@@ -469,7 +407,6 @@ kubeControllerManager:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
 ## Component scraping coreDns. Use either this or kubeDns
 coreDns:
   enabled: true
@@ -494,7 +431,6 @@ coreDns:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-
 ## Component scraping kubeDns. Use either this or coreDns
 kubeDns:
   enabled: false
@@ -780,7 +716,6 @@ prometheusOperator:
       # issuerRef:
       #   name: "issuer"
       #   kind: "ClusterIssuer"
-
   ## Namespaces to scope the interaction of the Prometheus Operator and the apiserver (allow list).
   ## This is mutually exclusive with denyNamespaces. Setting this to an empty object will disable the configuration
   namespaces: {}
@@ -805,19 +740,9 @@ prometheusOperator:
     annotations: {}
     labels: {}
     clusterIP: ""
-  ## Port to expose on each node
-  ## Only used if service.type is 'NodePort'
-    nodePort: 30080
-    nodePortTls: 30443
   ## Additional ports to open for Prometheus service
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#multi-port-services
     additionalPorts: []
-  ## Loadbalancer IP
-  ## Only use if service.type is "LoadBalancer"
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
-  ## Service type
-  ## NodePort, ClusterIP, LoadBalancer
     type: ClusterIP
     ## List of IP addresses at which the Prometheus server service is available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
