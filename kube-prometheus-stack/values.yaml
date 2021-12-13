@@ -40,7 +40,6 @@ alertmanager:
   ingress:
     enabled: false
     annotations: {}
-    labels: {}
     hosts: []
       # - alertmanager.domain.com
     paths: []
@@ -58,7 +57,6 @@ alertmanager:
     enabled: false
       ingressClassName: nginx
     annotations: {}
-    labels: {}
     ## Final form of the hostname for each per replica ingress is
     ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}
     ## Prefix for the per replica ingress that will have `-$replicaNumber`
@@ -107,8 +105,6 @@ alertmanager:
           resources:
             requests:
               storage: 50Gi
-    ## ListenLocal makes the Alertmanager server listen on loopback, so that it does not bind against the Pod IP.
-    ## Note this is only for the Alertmanager UI, not the gossip communication.
     listenLocal: false
     portName: "http-web"
   ## ExtraSecret can be used to store various data in an extra secret
@@ -216,7 +212,6 @@ grafana:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-## Component scraping the kube api server
 kubeApiServer:
   enabled: true
   tlsConfig:
@@ -245,21 +240,13 @@ kubeApiServer:
     #   regex: default;kubernetes;https
     # - targetLabel: __address__
     #   replacement: kubernetes.default.svc:443
-## Component scraping the kubelet and kubelet-hosted cAdvisor
 kubelet:
   enabled: true
   namespace: kube-system
   serviceMonitor:
-    ## proxyUrl: URL of a proxy that should be used for scraping.
-    proxyUrl: ""
-    ## Enable scraping the kubelet over https. For requirements to enable this see
-    ## https://github.com/prometheus-operator/prometheus-operator/issues/926
     https: true
-    ## Enable scraping /metrics/cadvisor from kubelet's service
     cAdvisor: true
-    ## Enable scraping /metrics/probes from kubelet's service
     probes: true
-    ## Enable scraping /metrics/resource from kubelet's service
     ## This is disabled by default because container metrics are already exposed by cAdvisor
     resource: false
     resourcePath: "/metrics/resource/v1alpha1"
@@ -415,11 +402,9 @@ kubeDns:
     skydns:
       port: 10055
       targetPort: 10055
-    # selector:
-    #   k8s-app: kube-dns
+      selector:
+        k8s-app: kube-dns
   serviceMonitor:
-    ## proxyUrl: URL of a proxy that should be used for scraping.
-    proxyUrl: ""
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
     metricRelabelings: []
@@ -450,7 +435,6 @@ kubeDns:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-## Component scraping etcd
 kubeEtcd:
   enabled: true
   service:
@@ -685,13 +669,6 @@ prometheusOperator:
   podLabels: {}
   ## Annotations to add to the operator pod
   podAnnotations: {}
-  ## Assign a PriorityClassName to pods if set
-  # priorityClassName: ""
-  ## Define Log Format
-  # Use logfmt (default) or json logging
-  # logFormat: logfmt
-  ## Decrease log verbosity to errors only
-  # logLevel: error
   ## If true, the operator will create and maintain a service for scraping kubelets
   ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/helm/prometheus-operator/README.md
   kubeletService:
@@ -757,13 +734,9 @@ prometheusOperator:
     tag: v0.23.1
   ## Set a Field Selector to filter watched secrets
   secretFieldSelector: ""
-## Deploy a Prometheus instance
 prometheus:
   enabled: true
-  ## Annotations for Prometheus
   annotations: {}
-  ## Service account for Prometheuses to use.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
   serviceAccount:
     create: true
     name: ""
@@ -1162,10 +1135,6 @@ prometheus:
              requests:
                storage: 50Gi
          selector:
-    ## Using tmpfs volume
-    #  emptyDir:
-    #    medium: Memory
-    # Additional volumes on the output StatefulSet definition.
     volumes: []
     # Additional VolumeMounts on the output StatefulSet definition.
     volumeMounts: []
