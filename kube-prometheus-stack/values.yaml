@@ -26,12 +26,10 @@ defaultRules:
     prometheus: true
     prometheusOperator: true
     time: true
-
   ## Runbook url prefix for default rules
   runbookUrl: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#
   ## Reduce app namespace alert scope
   appNamespacesTarget: ".*"
-
 global:
   rbac:
     create: true
@@ -47,17 +45,15 @@ alertmanager:
     labels: {}
     hosts: []
       # - alertmanager.domain.com
-    ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
     paths: []
     # - /
-    # pathType: ImplementationSpecific
+    pathType: ImplementationSpecific
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
     tls: []
     # - secretName: alertmanager-general-tls
     #   hosts:
     #   - alertmanager.example.com
-  ## Configuration for Alertmanager secret
   secret:
     annotations: {}
   ingressPerReplica:
@@ -75,8 +71,6 @@ alertmanager:
     ## Paths to use for ingress rules
     paths: []
     # - /
-    ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
       pathType: ImplementationSpecific
     ## Secret name containing the TLS certificate for alertmanager per replica ingress
     ## Secret must be manually created in the namespace
@@ -104,7 +98,6 @@ alertmanager:
     image:
       repository: quay.io/prometheus/alertmanager
       tag: v0.23.0
-      sha: ""
     useExistingSecret: false
     alertmanagerConfigNamespaceSelector: {}
     replicas: 1
@@ -139,20 +132,14 @@ grafana:
   defaultDashboardsTimezone: America/Chicago
   adminPassword: prom-operator
   ingress:
-    ## If true, Grafana Ingress will be created
     enabled: false
-    ## Annotations for Grafana Ingress
     annotations: {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
-    ## Labels to be added to the Ingress
     labels: {}
-    ## Hostnames.
-    ## Must be provided if Ingress is enable.
     # hosts:
     #   - grafana.domain.com
     hosts: []
-    ## Path for grafana ingress
     path: /
     ## TLS configuration for grafana Ingress
     ## Secret must be manually created in the namespace
@@ -186,7 +173,6 @@ grafana:
       ## ref: https://git.io/fjaBS
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
-
   extraConfigmapMounts: []
   # - name: certs-configmap
   #   mountPath: /etc/grafana/ssl/
@@ -215,8 +201,6 @@ grafana:
     portName: http-web
   ## If true, create a serviceMonitor for grafana
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     selfMonitor: true
     # Path to use for scraping metrics. Might be different if server.root_url is set
     # in grafana.ini
@@ -243,8 +227,6 @@ kubeApiServer:
     serverName: kubernetes
     insecureSkipVerify: false
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     ## proxyUrl: URL of a proxy that should be used for scraping.
     proxyUrl: ""
     jobLabel: component
@@ -481,11 +463,6 @@ kubeDns:
 ## Component scraping etcd
 kubeEtcd:
   enabled: true
-  ## If your etcd is not deployed as a pod, specify IPs it can be found on
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
   ## Etcd service. If using kubeEtcd.endpoints only the port and targetPort are used
   service:
     enabled: true
@@ -528,11 +505,6 @@ kubeEtcd:
 ## Component scraping kube scheduler
 kubeScheduler:
   enabled: true
-  ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
   ## If using kubeScheduler.endpoints only the port and targetPort are used
   service:
     enabled: true
@@ -567,11 +539,6 @@ kubeScheduler:
 ## Component scraping kube proxy
 kubeProxy:
   enabled: true
-  ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
   service:
     enabled: true
     port: 10249
@@ -600,8 +567,6 @@ kubeProxy:
 kubeStateMetrics:
   enabled: true
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     ## Scrape Timeout. If not set, the Prometheus default scrape timeout is used.
     scrapeTimeout: ""
     ## proxyUrl: URL of a proxy that should be used for scraping.
@@ -635,14 +600,11 @@ kube-state-metrics:
     create: true
   podSecurityPolicy:
     enabled: true
-## Deploy node exporter as a daemonset to all nodes
 nodeExporter:
   enabled: true
   ## Use the value configured in prometheus-node-exporter.podLabels
   jobLabel: jobLabel
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     ## proxyUrl: URL of a proxy that should be used for scraping.
     proxyUrl: ""
     ## How long until a scrape request times out. If not set, the Prometheus default scape timeout is used.
@@ -678,12 +640,9 @@ prometheus-node-exporter:
 ## Manages Prometheus and Alertmanager components
 prometheusOperator:
   enabled: true
-  ## Prometheus-Operator v0.39.0 and later support TLS natively.
   tls:
     enabled: true
-    # Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants
     tlsMinVersion: VersionTLS13
-    # The default webhook port is 10250 in order to work out-of-the-box in GKE private clusters and avoid adding firewall rules.
     internalPort: 10250
   ## Admission webhook support for PrometheusRules resources added in Prometheus Operator 0.30 can be enabled to prevent incorrectly formatted
   ## rules from making their way into prometheus and potentially preventing the container from starting
@@ -785,7 +744,6 @@ prometheusOperator:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-  ## Resource limits & requests
   resources: {}
   # limits:
   #   cpu: 200m
@@ -837,7 +795,6 @@ prometheusOperator:
   image:
     repository: quay.io/prometheus-operator/prometheus-operator
     tag: v0.52.1
-    sha: ""
     pullPolicy: IfNotPresent
   ## Prometheus image to use for prometheuses managed by the operator
   # prometheusDefaultBaseImage: quay.io/prometheus/prometheus
@@ -849,8 +806,6 @@ prometheusOperator:
     image:
       repository: quay.io/prometheus-operator/prometheus-config-reloader
       tag: v0.52.1
-      sha: ""
-    # resource config for prometheusConfigReloader
     resources:
       requests:
         cpu: 100m
@@ -862,11 +817,9 @@ prometheusOperator:
   thanosImage:
     repository: quay.io/thanos/thanos
     tag: v0.23.1
-    sha: ""
   ## Set a Field Selector to filter watched secrets
   secretFieldSelector: ""
 ## Deploy a Prometheus instance
-##
 prometheus:
   enabled: true
   ## Annotations for Prometheus
@@ -949,11 +902,6 @@ prometheus:
     ## List of IP addresses at which the Prometheus server service is available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
     externalIPs: []
-    ## Loadbalancer IP
-    ## Only use if service.type is "LoadBalancer"
-    loadBalancerIP: ""
-    loadBalancerSourceRanges: []
-    ## Service type
     type: ClusterIP
     sessionAffinity: ""
   ## Configuration for creating a separate Service for each statefulset Prometheus replica
@@ -1071,14 +1019,7 @@ prometheus:
       enabled: false
       ## Final form of the secret for each per replica ingress is
       ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}
-      ##
       prefix: "prometheus"
-  ## Configure additional options for default pod security policy for Prometheus
-  ## ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/
-  podSecurityPolicy:
-    allowedCapabilities: []
-    allowedHostPaths: []
-    volumes: []
   serviceMonitor:
     selfMonitor: true
     ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
@@ -1125,9 +1066,6 @@ prometheus:
     image:
       repository: quay.io/prometheus/prometheus
       tag: v2.31.1
-      sha: ""
-    ## Tolerations for use with node taints
-    ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
     tolerations: []
     #  - key: "key"
     #    operator: "Equal"
@@ -1223,7 +1161,6 @@ prometheus:
     probeNamespaceSelector: {}
     ## How long to retain metrics
     retention: 10d
-    ## Maximum size of metrics
     retentionSize: ""
     ## Enable compression of the write-ahead log using Snappy.
     walCompression: false
@@ -1232,13 +1169,6 @@ prometheus:
     ## Number of replicas of each shard to deploy for a Prometheus deployment.
     ## Number of replicas multiplied by shards is the total number of Pods created.
     replicas: 1
-    ## EXPERIMENTAL: Number of shards to distribute targets onto.
-    ## Number of replicas multiplied by shards is the total number of Pods created.
-    ## Note that scaling down shards will not reshard data onto remaining instances, it must be manually moved.
-    ## Increasing shards will not reshard data either but it will continue to be available from the same instances.
-    ## To query globally use Thanos sidecar and Thanos querier or remote write data to a central location.
-    ## Sharding is done on the content of the `__address__` target meta-label.
-    shards: 1
     ## Log level for Prometheus be configured in
     logLevel: info
     ## Log format for Prometheus be configured in
@@ -1461,7 +1391,6 @@ prometheus:
   #    verbs: [ "get", "list", "watch" ]
   additionalServiceMonitors: []
   ## Name of the ServiceMonitor to create
-  ##
   # - name: ""
     ## Additional labels to set used for the ServiceMonitorSelector. Together with standard labels from
     ## the chart
@@ -1510,7 +1439,6 @@ prometheus:
           ## Server name used to verify host name
           # serverName: ""
   additionalPodMonitors: []
-  ## Name of the PodMonitor to create
   # - name: ""
     ## Additional labels to set used for the PodMonitorSelector. Together with standard labels from
     ## the chart
