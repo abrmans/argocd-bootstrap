@@ -28,8 +28,6 @@ defaultRules:
     time: true
   ## Runbook url prefix for default rules
   runbookUrl: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#
-  ## Reduce app namespace alert scope
-  appNamespacesTarget: ".*"
 global:
   rbac:
     create: true
@@ -93,7 +91,6 @@ alertmanager:
     type: ClusterIP
   serviceMonitor:
     selfMonitor: true
-    proxyUrl: ""
   alertmanagerSpec:
     image:
       repository: quay.io/prometheus/alertmanager
@@ -124,7 +121,6 @@ alertmanager:
   #   auth: |
   #     foo:$apr1$OFG3Xybp$ckL0FHDAkoXYIlH9.cysT0
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
-
 ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 grafana:
   enabled: true
@@ -227,8 +223,6 @@ kubeApiServer:
     serverName: kubernetes
     insecureSkipVerify: false
   serviceMonitor:
-    ## proxyUrl: URL of a proxy that should be used for scraping.
-    proxyUrl: ""
     jobLabel: component
     selector:
       matchLabels:
@@ -268,7 +262,6 @@ kubelet:
     ## Enable scraping /metrics/resource from kubelet's service
     ## This is disabled by default because container metrics are already exposed by cAdvisor
     resource: false
-    # From kubernetes 1.18, /metrics/resource/v1alpha1 renamed to /metrics/resource
     resourcePath: "/metrics/resource/v1alpha1"
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
@@ -358,13 +351,12 @@ kubelet:
 ## Component scraping the kube controller manager
 kubeControllerManager:
   enabled: true
-  ## If using kubeControllerManager.endpoints only the port and targetPort are used
   service:
     enabled: true
     port: 10252
     targetPort: 10252
-    # selector:
-    #   component: kube-controller-manager
+      selector:
+        component: kube-controller-manager
   serviceMonitor:
     enabled: true
     ## Enable scraping kube-controller-manager over https.
@@ -395,8 +387,8 @@ coreDns:
   service:
     port: 9153
     targetPort: 9153
-    # selector:
-    #   k8s-app: kube-dns
+      selector:
+        k8s-app: kube-dns
   serviceMonitor:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
@@ -426,8 +418,6 @@ kubeDns:
     # selector:
     #   k8s-app: kube-dns
   serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
     ## proxyUrl: URL of a proxy that should be used for scraping.
     proxyUrl: ""
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
@@ -463,13 +453,12 @@ kubeDns:
 ## Component scraping etcd
 kubeEtcd:
   enabled: true
-  ## Etcd service. If using kubeEtcd.endpoints only the port and targetPort are used
   service:
     enabled: true
     port: 2379
     targetPort: 2379
-    # selector:
-    #   component: etcd
+      selector:
+        component: etcd
   ## Configure secure access to the etcd cluster by loading a secret into prometheus and
   ## specifying security configuration below. For example, with a secret named etcd-client-cert
   ## serviceMonitor:
@@ -502,16 +491,14 @@ kubeEtcd:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-## Component scraping kube scheduler
 kubeScheduler:
   enabled: true
-  ## If using kubeScheduler.endpoints only the port and targetPort are used
   service:
     enabled: true
     port: 10251
     targetPort: 10251
-    # selector:
-    #   component: kube-scheduler
+      selector:
+        component: kube-scheduler
   serviceMonitor:
     enabled: true
     ## Enable scraping kube-scheduler over https.
@@ -536,15 +523,14 @@ kubeScheduler:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-## Component scraping kube proxy
 kubeProxy:
   enabled: true
   service:
     enabled: true
     port: 10249
     targetPort: 10249
-    # selector:
-    #   k8s-app: kube-proxy
+      selector:
+        k8s-app: kube-proxy
   serviceMonitor:
     enabled: true
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
@@ -563,14 +549,9 @@ kubeProxy:
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
-## Component scraping kube state metrics
 kubeStateMetrics:
   enabled: true
   serviceMonitor:
-    ## Scrape Timeout. If not set, the Prometheus default scrape timeout is used.
-    scrapeTimeout: ""
-    ## proxyUrl: URL of a proxy that should be used for scraping.
-    proxyUrl: ""
     ## Override serviceMonitor selector
     selectorOverride: {}
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
@@ -593,9 +574,7 @@ kubeStateMetrics:
     # Enable self metrics configuration for Service Monitor
     selfMonitor:
       enabled: false
-## Configuration for kube-state-metrics subchart
 kube-state-metrics:
-  namespaceOverride: ""
   rbac:
     create: true
   podSecurityPolicy:
@@ -626,9 +605,7 @@ nodeExporter:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-## Configuration for prometheus-node-exporter subchart
 prometheus-node-exporter:
-  namespaceOverride: ""
   podLabels:
     ## Add the 'node-exporter' label to be used by serviceMonitor to match standard common usage in rules and grafana dashboards
     jobLabel: node-exporter
@@ -663,8 +640,6 @@ prometheusOperator:
         sha: "f3b6b39a6062328c095337b4cadcefd1612348fdd5190b1dcbcb9b9e90bd8068"
         pullPolicy: IfNotPresent
       resources: {}
-      ## Provide a priority class name to the webhook patching job
-      priorityClassName: ""
       podAnnotations: {}
       nodeSelector: {}
       affinity: {}
@@ -744,38 +719,7 @@ prometheusOperator:
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-  resources: {}
-  # limits:
-  #   cpu: 200m
-  #   memory: 200Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 100Mi
-  # Required for use in managed kubernetes clusters (such as AWS EKS) with custom CNI (such as calico),
-  # because control-plane managed by AWS cannot communicate with pods' IP CIDR and admission webhooks are not working
   hostNetwork: false
-  ## Define which Nodes the Pods are scheduled on.
-  ## ref: https://kubernetes.io/docs/user-guide/node-selection/
-  nodeSelector: {}
-  ## Tolerations for use with node taints
-  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-  tolerations: []
-  # - key: "key"
-  #   operator: "Equal"
-  #   value: "value"
-  #   effect: "NoSchedule"
-  ## Assign custom affinity rules to the prometheus operator
-  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-  affinity: {}
-    # nodeAffinity:
-    #   requiredDuringSchedulingIgnoredDuringExecution:
-    #     nodeSelectorTerms:
-    #     - matchExpressions:
-    #       - key: kubernetes.io/e2e-az-name
-    #         operator: In
-    #         values:
-    #         - e2e-az1
-    #         - e2e-az2
   dnsConfig: {}
     # nameservers:
     #   - 1.2.3.4
@@ -786,11 +730,6 @@ prometheusOperator:
     #   - name: ndots
     #     value: "2"
   #   - name: edns0
-  securityContext:
-    fsGroup: 65534
-    runAsGroup: 65534
-    runAsNonRoot: true
-    runAsUser: 65534
   ## Prometheus-operator image
   image:
     repository: quay.io/prometheus-operator/prometheus-operator
@@ -802,7 +741,6 @@ prometheusOperator:
   # alertmanagerDefaultBaseImage: quay.io/prometheus/alertmanager
   ## Prometheus-config-reloader
   prometheusConfigReloader:
-    # image to use for config and rule reloading
     image:
       repository: quay.io/prometheus-operator/prometheus-config-reloader
       tag: v0.52.1
@@ -839,7 +777,6 @@ prometheus:
     enabled: false
     annotations: {}
     labels: {}
-    ## Service type
     type: ClusterIP
     ## gRPC port config
     portName: grpc
@@ -852,9 +789,6 @@ prometheus:
     ## ClusterIP to assign
     # Default is to make this a headless service ("None")
     clusterIP: "None"
-    ## Port to expose on each node, if service type is NodePort
-    nodePort: 30901
-    httpNodePort: 30902
   # ServiceMonitor to scrape Sidecar metrics
   # Needs thanosService to be enabled as well
   thanosServiceMonitor:
